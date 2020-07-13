@@ -1,0 +1,817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4CCD7734-6276-4315-9298-68734D9305D9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ERSAI_Web_Portal</RootNamespace>
+    <AssemblyName>ERSAI Web Portal</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.91.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.91.0\lib\net452\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.0.0.9, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfobipClientLib, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Infobip.Api.Client.1.1.0\lib\net45\InfobipClientLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.4\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Optimization">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CultureConfig.cs" />
+    <Compile Include="App_Start\DBSeeder.cs" />
+    <Compile Include="App_Start\DictsConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\InfobipConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SMTPConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\AreaNames.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Areas\HumanResources\Controllers\API\EmployeesController.cs" />
+    <Compile Include="Areas\HumanResources\HumanResourcesAreaRegistration.cs" />
+    <Compile Include="Areas\HumanResources\Models\EmployeesFilter.cs" />
+    <Compile Include="Areas\PersonalAccount\Controllers\API\KPIController.cs" />
+    <Compile Include="Areas\PersonalAccount\Controllers\API\PayslipsController.cs" />
+    <Compile Include="Areas\PersonalAccount\Controllers\PersonalAccountController.cs" />
+    <Compile Include="Areas\PersonalAccount\Models\PersonalDetailsVM.cs" />
+    <Compile Include="Areas\PersonalAccount\PersonalAccountAreaRegistration.cs" />
+    <Compile Include="Areas\Travel\Controllers\TravelController.cs" />
+    <Compile Include="Areas\Travel\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Travel\TravelAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\AppBaseApiController.cs" />
+    <Compile Include="Controllers\API\UserManagementController.cs" />
+    <Compile Include="Controllers\AppBaseMVCController.cs" />
+    <Compile Include="Areas\HumanResources\Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MeController.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ExcelFormsHelper.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Helpers\PayslipPrinter.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DTO\Dicts\DictsDTO.cs" />
+    <Compile Include="Models\DTO\Dicts\DictItemDTO.cs" />
+    <Compile Include="Models\DTO\UsersFilter.cs" />
+    <Compile Include="Models\DTO\PaginatedFilterBase.cs" />
+    <Compile Include="Models\DTO\PaginatedResults.cs" />
+    <Compile Include="Models\DTO\SemanticApiReturnElementDTO.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.js" />
+    <Content Include="Content\HomePageImage.jpg" />
+    <Content Include="Content\air-datepicker\dist\css\datepicker.css" />
+    <Content Include="Content\air-datepicker\dist\css\datepicker.min.css" />
+    <Content Include="Content\air-datepicker\dist\js\datepicker.js" />
+    <Content Include="Content\air-datepicker\dist\js\datepicker.min.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.cs.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.da.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.de.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.en.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.es.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.fi.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.fr.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.hu.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.nl.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.pl.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.pt-BR.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.pt.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.ro.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.sk.js" />
+    <Content Include="Content\air-datepicker\dist\js\i18n\datepicker.zh.js" />
+    <Content Include="Content\air-datepicker\docs\css\github-gist.css" />
+    <Content Include="Content\air-datepicker\docs\css\style.css" />
+    <Content Include="Content\air-datepicker\docs\img\en.png" />
+    <Content Include="Content\air-datepicker\docs\img\promo-img-time.png" />
+    <Content Include="Content\air-datepicker\docs\img\ru.png" />
+    <Content Include="Content\air-datepicker\docs\index-ru.html" />
+    <Content Include="Content\air-datepicker\docs\index.html" />
+    <Content Include="Content\air-datepicker\docs\js\highlight.pack.js" />
+    <Content Include="Content\air-datepicker\docs\js\logger.js" />
+    <Content Include="Content\air-datepicker\docs\js\navigation.js" />
+    <Content Include="Content\air-datepicker\gulpfile.js" />
+    <Content Include="Content\air-datepicker\src\js\air-datepicker.js" />
+    <Content Include="Content\air-datepicker\src\js\body.js" />
+    <Content Include="Content\air-datepicker\src\js\datepicker.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.cs.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.da.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.de.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.en.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.es.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.fi.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.fr.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.hu.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.nl.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.pl.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.pt-BR.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.pt.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.ro.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.sk.js" />
+    <Content Include="Content\air-datepicker\src\js\i18n\datepicker.zh.js" />
+    <Content Include="Content\air-datepicker\src\js\navigation.js" />
+    <Content Include="Content\air-datepicker\src\js\timepicker.js" />
+    <Content Include="Content\air-datepicker\static-server.js" />
+    <Content Include="Content\air-datepicker\tasks\css.js" />
+    <Content Include="Content\air-datepicker\tasks\cssPage.js" />
+    <Content Include="Content\air-datepicker\tasks\gzip.js" />
+    <Content Include="Content\air-datepicker\tasks\i18n.js" />
+    <Content Include="Content\air-datepicker\tasks\jade.js" />
+    <Content Include="Content\air-datepicker\tasks\js.js" />
+    <Content Include="Content\air-datepicker\tests\index.html" />
+    <Content Include="Content\air-datepicker\tests\specs\api.js" />
+    <Content Include="Content\air-datepicker\tests\specs\events.js" />
+    <Content Include="Content\air-datepicker\tests\specs\options.js" />
+    <Content Include="Content\air-datepicker\tests\specs\static-methods.js" />
+    <Content Include="Content\air-datepicker\visual-tests.html" />
+    <Content Include="Content\Logo.png" />
+    <Content Include="Content\noAvatar.png" />
+    <Content Include="Content\Semantic-UI\components\accordion.css" />
+    <Content Include="Content\Semantic-UI\components\accordion.js" />
+    <Content Include="Content\Semantic-UI\components\accordion.min.css" />
+    <Content Include="Content\Semantic-UI\components\accordion.min.js" />
+    <Content Include="Content\Semantic-UI\components\ad.css" />
+    <Content Include="Content\Semantic-UI\components\ad.min.css" />
+    <Content Include="Content\Semantic-UI\components\api.js" />
+    <Content Include="Content\Semantic-UI\components\api.min.js" />
+    <Content Include="Content\Semantic-UI\components\breadcrumb.css" />
+    <Content Include="Content\Semantic-UI\components\breadcrumb.min.css" />
+    <Content Include="Content\Semantic-UI\components\button.css" />
+    <Content Include="Content\Semantic-UI\components\button.min.css" />
+    <Content Include="Content\Semantic-UI\components\card.css" />
+    <Content Include="Content\Semantic-UI\components\card.min.css" />
+    <Content Include="Content\Semantic-UI\components\checkbox.css" />
+    <Content Include="Content\Semantic-UI\components\checkbox.js" />
+    <Content Include="Content\Semantic-UI\components\checkbox.min.css" />
+    <Content Include="Content\Semantic-UI\components\checkbox.min.js" />
+    <Content Include="Content\Semantic-UI\components\colorize.js" />
+    <Content Include="Content\Semantic-UI\components\colorize.min.js" />
+    <Content Include="Content\Semantic-UI\components\comment.css" />
+    <Content Include="Content\Semantic-UI\components\comment.min.css" />
+    <Content Include="Content\Semantic-UI\components\container.css" />
+    <Content Include="Content\Semantic-UI\components\container.min.css" />
+    <Content Include="Content\Semantic-UI\components\dimmer.css" />
+    <Content Include="Content\Semantic-UI\components\dimmer.js" />
+    <Content Include="Content\Semantic-UI\components\dimmer.min.css" />
+    <Content Include="Content\Semantic-UI\components\dimmer.min.js" />
+    <Content Include="Content\Semantic-UI\components\divider.css" />
+    <Content Include="Content\Semantic-UI\components\divider.min.css" />
+    <Content Include="Content\Semantic-UI\components\dropdown.css" />
+    <Content Include="Content\Semantic-UI\components\dropdown.js" />
+    <Content Include="Content\Semantic-UI\components\dropdown.min.css" />
+    <Content Include="Content\Semantic-UI\components\dropdown.min.js" />
+    <Content Include="Content\Semantic-UI\components\embed.css" />
+    <Content Include="Content\Semantic-UI\components\embed.js" />
+    <Content Include="Content\Semantic-UI\components\embed.min.css" />
+    <Content Include="Content\Semantic-UI\components\embed.min.js" />
+    <Content Include="Content\Semantic-UI\components\feed.css" />
+    <Content Include="Content\Semantic-UI\components\feed.min.css" />
+    <Content Include="Content\Semantic-UI\components\flag.css" />
+    <Content Include="Content\Semantic-UI\components\flag.min.css" />
+    <Content Include="Content\Semantic-UI\components\form.css" />
+    <Content Include="Content\Semantic-UI\components\form.js" />
+    <Content Include="Content\Semantic-UI\components\form.min.css" />
+    <Content Include="Content\Semantic-UI\components\form.min.js" />
+    <Content Include="Content\Semantic-UI\components\grid.css" />
+    <Content Include="Content\Semantic-UI\components\grid.min.css" />
+    <Content Include="Content\Semantic-UI\components\header.css" />
+    <Content Include="Content\Semantic-UI\components\header.min.css" />
+    <Content Include="Content\Semantic-UI\components\icon.css" />
+    <Content Include="Content\Semantic-UI\components\icon.min.css" />
+    <Content Include="Content\Semantic-UI\components\image.css" />
+    <Content Include="Content\Semantic-UI\components\image.min.css" />
+    <Content Include="Content\Semantic-UI\components\input.css" />
+    <Content Include="Content\Semantic-UI\components\input.min.css" />
+    <Content Include="Content\Semantic-UI\components\item.css" />
+    <Content Include="Content\Semantic-UI\components\item.min.css" />
+    <Content Include="Content\Semantic-UI\components\label.css" />
+    <Content Include="Content\Semantic-UI\components\label.min.css" />
+    <Content Include="Content\Semantic-UI\components\list.css" />
+    <Content Include="Content\Semantic-UI\components\list.min.css" />
+    <Content Include="Content\Semantic-UI\components\loader.css" />
+    <Content Include="Content\Semantic-UI\components\loader.min.css" />
+    <Content Include="Content\Semantic-UI\components\menu.css" />
+    <Content Include="Content\Semantic-UI\components\menu.min.css" />
+    <Content Include="Content\Semantic-UI\components\message.css" />
+    <Content Include="Content\Semantic-UI\components\message.min.css" />
+    <Content Include="Content\Semantic-UI\components\modal.css" />
+    <Content Include="Content\Semantic-UI\components\modal.js" />
+    <Content Include="Content\Semantic-UI\components\modal.min.css" />
+    <Content Include="Content\Semantic-UI\components\modal.min.js" />
+    <Content Include="Content\Semantic-UI\components\nag.css" />
+    <Content Include="Content\Semantic-UI\components\nag.js" />
+    <Content Include="Content\Semantic-UI\components\nag.min.css" />
+    <Content Include="Content\Semantic-UI\components\nag.min.js" />
+    <Content Include="Content\Semantic-UI\components\popup.css" />
+    <Content Include="Content\Semantic-UI\components\popup.js" />
+    <Content Include="Content\Semantic-UI\components\popup.min.css" />
+    <Content Include="Content\Semantic-UI\components\popup.min.js" />
+    <Content Include="Content\Semantic-UI\components\progress.css" />
+    <Content Include="Content\Semantic-UI\components\progress.js" />
+    <Content Include="Content\Semantic-UI\components\progress.min.css" />
+    <Content Include="Content\Semantic-UI\components\progress.min.js" />
+    <Content Include="Content\Semantic-UI\components\rail.css" />
+    <Content Include="Content\Semantic-UI\components\rail.min.css" />
+    <Content Include="Content\Semantic-UI\components\rating.css" />
+    <Content Include="Content\Semantic-UI\components\rating.js" />
+    <Content Include="Content\Semantic-UI\components\rating.min.css" />
+    <Content Include="Content\Semantic-UI\components\rating.min.js" />
+    <Content Include="Content\Semantic-UI\components\reset.css" />
+    <Content Include="Content\Semantic-UI\components\reset.min.css" />
+    <Content Include="Content\Semantic-UI\components\reveal.css" />
+    <Content Include="Content\Semantic-UI\components\reveal.min.css" />
+    <Content Include="Content\Semantic-UI\components\search.css" />
+    <Content Include="Content\Semantic-UI\components\search.js" />
+    <Content Include="Content\Semantic-UI\components\search.min.css" />
+    <Content Include="Content\Semantic-UI\components\search.min.js" />
+    <Content Include="Content\Semantic-UI\components\segment.css" />
+    <Content Include="Content\Semantic-UI\components\segment.min.css" />
+    <Content Include="Content\Semantic-UI\components\shape.css" />
+    <Content Include="Content\Semantic-UI\components\shape.js" />
+    <Content Include="Content\Semantic-UI\components\shape.min.css" />
+    <Content Include="Content\Semantic-UI\components\shape.min.js" />
+    <Content Include="Content\Semantic-UI\components\sidebar.css" />
+    <Content Include="Content\Semantic-UI\components\sidebar.js" />
+    <Content Include="Content\Semantic-UI\components\sidebar.min.css" />
+    <Content Include="Content\Semantic-UI\components\sidebar.min.js" />
+    <Content Include="Content\Semantic-UI\components\site.css" />
+    <Content Include="Content\Semantic-UI\components\site.js" />
+    <Content Include="Content\Semantic-UI\components\site.min.css" />
+    <Content Include="Content\Semantic-UI\components\site.min.js" />
+    <Content Include="Content\Semantic-UI\components\state.js" />
+    <Content Include="Content\Semantic-UI\components\state.min.js" />
+    <Content Include="Content\Semantic-UI\components\statistic.css" />
+    <Content Include="Content\Semantic-UI\components\statistic.min.css" />
+    <Content Include="Content\Semantic-UI\components\step.css" />
+    <Content Include="Content\Semantic-UI\components\step.min.css" />
+    <Content Include="Content\Semantic-UI\components\sticky.css" />
+    <Content Include="Content\Semantic-UI\components\sticky.js" />
+    <Content Include="Content\Semantic-UI\components\sticky.min.css" />
+    <Content Include="Content\Semantic-UI\components\sticky.min.js" />
+    <Content Include="Content\Semantic-UI\components\tab.css" />
+    <Content Include="Content\Semantic-UI\components\tab.js" />
+    <Content Include="Content\Semantic-UI\components\tab.min.css" />
+    <Content Include="Content\Semantic-UI\components\tab.min.js" />
+    <Content Include="Content\Semantic-UI\components\table.css" />
+    <Content Include="Content\Semantic-UI\components\table.min.css" />
+    <Content Include="Content\Semantic-UI\components\transition.css" />
+    <Content Include="Content\Semantic-UI\components\transition.js" />
+    <Content Include="Content\Semantic-UI\components\transition.min.css" />
+    <Content Include="Content\Semantic-UI\components\transition.min.js" />
+    <Content Include="Content\Semantic-UI\components\video.css" />
+    <Content Include="Content\Semantic-UI\components\video.js" />
+    <Content Include="Content\Semantic-UI\components\video.min.css" />
+    <Content Include="Content\Semantic-UI\components\video.min.js" />
+    <Content Include="Content\Semantic-UI\components\visibility.js" />
+    <Content Include="Content\Semantic-UI\components\visibility.min.js" />
+    <Content Include="Content\Semantic-UI\components\visit.js" />
+    <Content Include="Content\Semantic-UI\components\visit.min.js" />
+    <Content Include="Content\Semantic-UI\package.js" />
+    <Content Include="Content\Semantic-UI\semantic.css" />
+    <Content Include="Content\Semantic-UI\semantic.js" />
+    <Content Include="Content\Semantic-UI\semantic.min.css" />
+    <Content Include="Content\Semantic-UI\semantic.min.js" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\brand-icons.svg" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\icons.svg" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\outline-icons.svg" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\images\flags.png" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\default\assets\fonts\brand-icons.svg" />
+    <Content Include="Content\themes\default\assets\fonts\icons.svg" />
+    <Content Include="Content\themes\default\assets\fonts\outline-icons.svg" />
+    <Content Include="Content\themes\default\assets\images\flags.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Content\Semantic-UI\.versions" />
+    <Content Include="Content\Semantic-UI\LICENSE" />
+    <Content Include="Content\Semantic-UI\package.json" />
+    <Content Include="Content\Semantic-UI\README.md" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\brand-icons.eot" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\brand-icons.ttf" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\brand-icons.woff" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\brand-icons.woff2" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\icons.eot" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\icons.otf" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\icons.ttf" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\icons.woff" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\icons.woff2" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\outline-icons.eot" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\outline-icons.ttf" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\outline-icons.woff" />
+    <Content Include="Content\Semantic-UI\themes\default\assets\fonts\outline-icons.woff2" />
+    <Content Include="Content\air-datepicker\.gitignore" />
+    <Content Include="Content\air-datepicker\.npmignore" />
+    <Content Include="Content\air-datepicker\bower.json" />
+    <Content Include="Content\air-datepicker\docs\jade\layout.jade" />
+    <Content Include="Content\air-datepicker\docs\jade\mixins\example-code.jade" />
+    <Content Include="Content\air-datepicker\docs\jade\mixins\example-content.jade" />
+    <Content Include="Content\air-datepicker\docs\jade\mixins\example-inline.jade" />
+    <Content Include="Content\air-datepicker\docs\jade\mixins\example.jade" />
+    <Content Include="Content\air-datepicker\docs\jade\mixins\param-header.jade" />
+    <Content Include="Content\air-datepicker\docs\jade\mixins\param.jade" />
+    <Content Include="Content\air-datepicker\docs\jade\pages\index-ru.jade" />
+    <Content Include="Content\air-datepicker\docs\jade\pages\index.jade" />
+    <Content Include="Content\air-datepicker\docs\sass\init.scss" />
+    <Content Include="Content\air-datepicker\docs\sass\_docs.scss" />
+    <Content Include="Content\air-datepicker\docs\sass\_reset.scss" />
+    <Content Include="Content\air-datepicker\LICENSE.md" />
+    <Content Include="Content\air-datepicker\package.json" />
+    <Content Include="Content\air-datepicker\README.md" />
+    <Content Include="Content\air-datepicker\src\sass\cell.scss" />
+    <Content Include="Content\air-datepicker\src\sass\datepicker.scss" />
+    <Content Include="Content\air-datepicker\src\sass\navigation.scss" />
+    <Content Include="Content\air-datepicker\src\sass\timepicker.scss" />
+    <Content Include="Content\air-datepicker\src\sass\_datepicker-config.scss" />
+    <Content Include="Content\themes\default\assets\fonts\brand-icons.eot" />
+    <Content Include="Content\themes\default\assets\fonts\brand-icons.ttf" />
+    <Content Include="Content\themes\default\assets\fonts\brand-icons.woff" />
+    <Content Include="Content\themes\default\assets\fonts\brand-icons.woff2" />
+    <Content Include="Content\themes\default\assets\fonts\icons.eot" />
+    <Content Include="Content\themes\default\assets\fonts\icons.otf" />
+    <Content Include="Content\themes\default\assets\fonts\icons.ttf" />
+    <Content Include="Content\themes\default\assets\fonts\icons.woff" />
+    <Content Include="Content\themes\default\assets\fonts\icons.woff2" />
+    <Content Include="Content\themes\default\assets\fonts\outline-icons.eot" />
+    <Content Include="Content\themes\default\assets\fonts\outline-icons.ttf" />
+    <Content Include="Content\themes\default\assets\fonts\outline-icons.woff" />
+    <Content Include="Content\themes\default\assets\fonts\outline-icons.woff2" />
+    <Content Include="Areas\PersonalAccount\Views\web.config" />
+    <Content Include="Areas\PersonalAccount\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HumanResources\Views\web.config" />
+    <Content Include="Areas\HumanResources\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HumanResources\Views\Employees\_FourthTabTemplates.cshtml" />
+    <Content Include="Areas\HumanResources\Views\Employees\_EmployeesListTemplates.cshtml" />
+    <Content Include="Areas\Travel\Views\web.config" />
+    <Content Include="Areas\Travel\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Travel\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Travel\Views\Travel\Index.cshtml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\ExcelFormTemplates\ERSAI-HR-008-E-R.xlsx" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Properties\PublishProfiles\FileSystem.pubxml" />
+    <None Include="Properties\PublishProfiles\Server19.pubxml" />
+    <None Include="Properties\PublishProfiles\Server24.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\app\BasicClass.item.es5.js">
+      <DependentUpon>BasicClass.item.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\app\BasicClass.item.js" />
+    <Content Include="Scripts\app\PaginatedFIlter.js" />
+    <Content Include="Scripts\app\KOCustomBindings\datepicker.js" />
+    <Content Include="Scripts\app\KOCustomBindings\file.js" />
+    <Content Include="Scripts\app\KOCustomBindings\onEnterKey.js" />
+    <Content Include="Scripts\app\KOCustomBindings\visibleAnimates.js" />
+    <Content Include="Scripts\app\PaginatedResults.es5.js">
+      <DependentUpon>PaginatedResults.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\app\PaginatedResults.js" />
+    <Content Include="Scripts\app\Views\Employees\Employee.item.js" />
+    <Content Include="Scripts\app\Views\Employees\Employees.viewmodel.js" />
+    <Content Include="Scripts\app\Views\KPIDocs.viewmodel.es5.js">
+      <DependentUpon>KPIDocs.viewmodel.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\app\Views\KPIDocs.viewmodel.js" />
+    <Content Include="Scripts\app\Views\Payslips.viewmodel.es5.js">
+      <DependentUpon>Payslips.viewmodel.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\app\Views\Payslips.viewmodel.js" />
+    <Content Include="Scripts\app\Views\UserManagement\User.item.js" />
+    <Content Include="Scripts\app\Views\UserManagement\UserManagement.viewmodel.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
+    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\knockout.validation.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Polyfills\Object.assign.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sammy-0.7.5.js" />
+    <Content Include="Scripts\sammy-0.7.5.min.js" />
+    <Content Include="Scripts\Travel\main.js" />
+    <Content Include="Scripts\Travel\Travel.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\app\_run.js" />
+    <Content Include="Scripts\app\app.datamodel.js" />
+    <Content Include="Scripts\app\app.viewmodel.js" />
+    <Content Include="Scripts\app\common.js" />
+    <Content Include="Scripts\app\Views\home.viewmodel.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\GetPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Home\_Home.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\knockout.validation.min.js.map" />
+    <Content Include="Areas\PersonalAccount\Views\PersonalAccount\Index.cshtml" />
+    <Content Include="Areas\PersonalAccount\Views\PersonalAccount\_EmployeeDetailsPartial.cshtml" />
+    <Content Include="Areas\PersonalAccount\Views\PersonalAccount\_PayslipsPartial.cshtml" />
+    <Content Include="Views\Shared\DropdownTemplates.cshtml" />
+    <Content Include="Areas\PersonalAccount\Views\PersonalAccount\_MyKPIDocsTemplatesPartial.cshtml" />
+    <Content Include="Areas\HumanResources\Views\Employees\Index.cshtml" />
+    <Content Include="Areas\HumanResources\Views\Employees\_FirstTabTemplates.cshtml" />
+    <Content Include="Views\Shared\_DictsPartial.cshtml" />
+    <Content Include="Views\Shared\SearchTemplates.cshtml" />
+    <Content Include="Views\Shared\_ModalsPartial.cshtml" />
+    <Content Include="Areas\HumanResources\Views\Employees\_SecondTabTemplates.cshtml" />
+    <Content Include="Areas\HumanResources\Views\Employees\_ThirdTabTemplates.cshtml" />
+    <Content Include="Views\Shared\_AddInfoPartial.cshtml" />
+    <Content Include="Views\Shared\_MainMenuItemsPartial.cshtml" />
+    <Content Include="Views\UserManagement\Index.cshtml" />
+    <Content Include="Views\Shared\_BasicClassTemplates.cshtml" />
+    <Content Include="Views\UserManagement\_Templates.cshtml" />
+    <Content Include="Views\Travel\Index.cshtml" />
+    <None Include="Web.Server19.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\HumanResources\Views\Shared\" />
+    <Folder Include="Areas\Travel\Models\" />
+    <Folder Include="Views\Default\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataModels\DataModels.csproj">
+      <Project>{865d06dc-2ebf-47a1-9344-ce42645c9c31}</Project>
+      <Name>DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntegrationClients\IntegrationClients.csproj">
+      <Project>{1b9ba634-6bdd-4ee3-86fd-a9958354cf24}</Project>
+      <Name>IntegrationClients</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64312</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64312/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.11.326\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.11.326\build\BuildWebCompiler.targets'))" />
+  </Target>
+  <Import Project="..\packages\BuildWebCompiler.1.11.326\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.11.326\build\BuildWebCompiler.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

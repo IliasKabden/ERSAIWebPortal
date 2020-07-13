@@ -1,0 +1,20 @@
+﻿@if (ViewBag.AppUser != null)
+{
+    var user = ViewBag.AppUser as DataModels.AppUser;
+    var editSections = user.AddData?.IMSEmployeeSectionEditRights?.Select(sec => sec.ToString());
+
+    <script>
+        User = {
+            Roles: @Html.Raw(Json.Encode(ViewBag.UserRoles)),
+            EmployeeEditSections: @Html.Raw(Json.Encode(editSections)),
+            EmployeeEditBusinessUnits: @Html.Raw(Json.Encode(user.AddData?.IMSEmployeesBusinessUnitsEditRights)),
+            EmployeeViewBusinessUnits: @Html.Raw(Json.Encode(user.AddData?.IMSEmployeesBusinessUnitsViewRights)),
+            IsInRole: function(role) {
+                return this.Roles.indexOf(role) >= 0;
+            },
+            IsHREmployeesCreator: function() {
+                return this.IsInRole('@DataModels.AppRole.HREmployeesCreatorRole');
+            }
+        };
+    </script>
+}

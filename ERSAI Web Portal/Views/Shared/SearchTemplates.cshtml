@@ -1,0 +1,125 @@
+﻿<!--
+    <script>
+        {
+            Options: [""],
+            Value: observable
+            CSSClasses: "",
+            Disabled: bool
+        }
+    </script>
+-->
+
+<script type="text/html" id="AutocompleteInputTemplate">
+    <!-- ko template: {
+        afterRender: AfterRenderFunctions.Search.AutoCompleteInputAfterRender
+    } -->
+    <div class="ui search">
+        <div class="ui input">
+            <input type="text" data-bind="value: $data.Value, attr: { readonly: $data.Disabled }, css: { prompt: !ko.unwrap($data.Disabled) }">
+        </div>
+        <div class="results" style="max-height: 20em; overflow-y: auto"></div>
+    </div>
+    <!-- /ko -->
+</script>
+
+
+<script>
+    AfterRenderFunctions = window.AfterRenderFunctions || {};
+    AfterRenderFunctions.Search = {
+        AutoCompleteInputAfterRender: function (HTML, data) {
+            var searchElement = $(HTML).filter('.ui.search');
+            if (data.CSSClasses != null)
+                searchElement.addClass(data.CSSClasses);
+            searchElement.search({
+                source: ko.unwrap(data.Options).map(function (x) { return { title: x } }),
+                showNoResults: false
+            });
+            if (ko.isObservable(data.Options)) {
+                data.Options.subscribe(function (val) {
+                    $(searchElement).search('setting', 'source', val)
+                });
+            }
+        },
+        SearchSelectAfterRender: function (HTML, data) {
+            var searchElement = $(HTML).filter('.ui.search');
+            if (data.CSSClasses != null)
+                searchElement.addClass(data.CSSClasses);
+            searchElement.search({
+                source: ko.unwrap(data.Options),
+                searchFields: [data.DataText || "Name"],
+                fields: {
+                    title: data.DataText || "Name"
+                },
+                showNoResults: true,
+                onSelect: function (result, response) {
+                    data.Value(result[data.DataValue || "ID"]);
+                },
+                minCharacters: data.MinCharacters != null ? data.MinCharacters : 1,
+                maxResults: data.MaxResults || 12
+            });
+            if (ko.isObservable(data.Options)) {
+                data.Options.subscribe(function (val) {
+                    $(searchElement).search('setting', 'source', val)
+                });
+            }
+            var searchInput = searchElement.find("input");
+            searchInput.change(function () {
+                searchInput.val(null);
+            });
+            if (data.FocusSearch == true)
+                searchInput.focus();
+            data.FocusSearch = null;
+        }
+    }
+</script>
+
+<!--
+    <script>
+        {
+            Options: [""],
+            AllOptions: [""]
+            Value: observable
+            CSSClasses: "",
+            DataText: "Name",
+            DataValue: "ID",
+            Disabled: bool
+        }
+    </script>
+-->
+
+
+<script type="text/html" id="SearchSelectTemplate">
+    <!-- ko ifnot: Value -->
+    <!-- ko template: {
+        afterRender: AfterRenderFunctions.Search.SearchSelectAfterRender
+    } -->
+    <div class="ui fluid search">
+        <div class="ui left icon input">
+            <i class="search icon"></i>
+            <input type="text" data-bind="attr: { readonly: $data.Disabled }, css: { prompt: !ko.unwrap($data.Disabled) }">
+            <!-- ko with: !ko.unwrap($data.Disabled) ? $data.OriginalValue : null -->
+            <button class="ui green icon button" data-tooltip="Reselect previous value" data-position="left center" data-bind="click: function() { $parent.Value($data); }" style="margin-left: 0.1em">
+                <i class="undo icon"></i>
+            </button>
+            <!-- /ko -->
+        </div>
+        <div class="results"></div>
+    </div>
+    <span data-bind="validationMessage: Value, css: ko.validation.configuration.errorMessageClass"></span>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: Value -->
+    <span data-bind="text: (ko.unwrap($data.AllOptions || Options).find(function(option) {
+        return option[$data.DataValue || 'ID'] == Value();
+    }) || {})[$data.DataText || 'Name'] || 'Value not found'"></span>
+    <!-- ko ifnot: $data.Disabled -->
+    <div class="ui right floated icon buttons">
+        <button class="ui blue button" data-bind="click: function() { $data.OriginalValue = Value(); $data.FocusSearch = true; Value(null); }"><i class="pencil icon"></i></button>
+        <button class="ui orange button" data-bind="click: function() { $data.OriginalValue = Value(); Value(null); }"><i class="trash icon"></i></button>
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+</script>
+<script>
+
+</script>

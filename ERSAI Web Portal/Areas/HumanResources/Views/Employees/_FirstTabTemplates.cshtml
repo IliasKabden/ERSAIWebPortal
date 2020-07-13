@@ -1,0 +1,368 @@
+﻿<script type="text/html" id="FirstTabTemplate">
+    <!-- ko if: BasicInfo -->
+    <div class="ui blue segment" data-bind="template: { name: 'BasicInfoFieldsTemplate', data: BasicInfo }"></div>
+    <!-- /ko -->
+    <!-- ko with: BasicCompanyInfo -->
+    <div class="ui green segment" data-bind="template: { name: 'BasicCompanyInfoFieldsTemplate', data: $data }"></div>
+    <!-- /ko -->
+    <!-- ko template: { name: 'AdditionalPersonalInfoSegmentTemplate', if: AdditionalPersonalInfo, data: AdditionalPersonalInfo } --><!-- /ko -->
+    <!-- ko with: StatusInfo -->
+    <div class="ui green segment" data-bind="template: { name: 'StatusInfoFieldsTemplate', data: $data }"></div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="BasicInfoFieldsTemplate">
+    <table class="ui very basic table">
+        <tr>
+            <td>
+                <div class="fields">
+                    <div class="field">
+                        <label>
+                            Badge
+                            <!-- ko with: $parent.CurrentBadgeNumber -->
+                            <span data-bind="text: '(Currently saved badge: ' + $data + ')'"></span>
+                            <!-- /ko -->
+                        </label>
+                        <input type="text" data-bind="attr: { readonly: $data.ReadOnly() || $parent.CurrentBadgeNumber() }, value: BadgeNumber" />
+                    </div>
+                    <div class="field">
+                        <label>GHRSID</label>
+                        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: GHRSID" />
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="field">
+                        <label>First Name</label>
+                        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: FirstName" />
+                    </div>
+                    <div class="field">
+                        <label>Middle Name</label>
+                        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: MiddleName" />
+                    </div>
+                    <div class="field">
+                        <label>Last Name</label>
+                        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: LastName" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Full Name (Local)</label>
+                    <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: FullNameLocal" />
+                </div>
+            </td>
+            <td class="collapsing">
+                <div class="field">
+                    <label>Photo</label>
+                    <label for="EmployeePhotoSelector">
+                        <img class="ui small bordered image" data-bind="attr: { src: PhotoBase64() != null ? ('data:image;base64,' + PhotoBase64()) : '/@ERSAI_Web_Portal.Areas.AreaNames.HumanResources/Employees/Photo/' + $parent.CurrentBadgeNumber() + '?' + new Date().valueOf() }, style: { cursor: $data.ReadOnly() ? null : 'pointer' }" />
+                    </label>
+                    <input data-bind="file: { data: PhotoBase64, accept: 'image/*' }, attr: { type: $data.ReadOnly() ? null : 'file' }" id="EmployeePhotoSelector" style="display: none" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</script>
+<script type="text/html" id="BasicCompanyInfoFieldsTemplate">
+    <div class="field">
+        <label>Project Position</label>
+        <!-- ko template: { name: "SearchSelectTemplate", data: {
+            Options: dicts.HR.Positions,
+            Value: ProjectPositionID,
+            MinCharacters: 0,
+            Disabled: $data.ReadOnly
+        } } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Contract Position</label>
+        <!-- ko template: { name: "SearchSelectTemplate", data: {
+            Options: dicts.HR.Positions,
+            Value: ContractPositionID,
+            Disabled: $data.ReadOnly
+        } } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Project</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.Projects,
+                Value: ProjectID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Department</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.Departments,
+                Value: DepartmentID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Supervisor</label>
+        <!-- ko template: { name: "SearchSelectTemplate", data: {
+            Options: dicts.HR.ActiveEmployees,
+            AllOptions: dicts.HR.Employees,
+            Value: SupervisorID,
+            Disabled: $data.ReadOnly
+        } } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Section</label>
+        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Section" />
+    </div>
+    <div class="field">
+        <label>Group</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.EmployeeGroups,
+                Value: GroupID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Business Unit</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.BusinessUnits,
+                Value: BusinessUnitID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+</script>
+<script type="text/html" id="AdditionalPersonalInfoSegmentTemplate">
+    <div class="ui two column stackable grid">
+        <div class="row">
+            <div class="column">
+                <div class="ui blue segment">
+                    <div class="field">
+                        <label>Category</label>
+                        <!-- ko template: { name: 'DropdownTemplate', data: {
+                                Options: dicts.HR.EmployeeCategories,
+                                Value: Category,
+                                CSSClasses: 'fluid',
+                                Disabled: $data.ReadOnly,
+                                DefaultText: true
+                            }
+                        } -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="field">
+                        <label>Nationality</label>
+                        <!-- ko template: { name: 'DropdownWithIconsTemplate', data: {
+                                Options: dicts.HR.Countries,
+                                Value: NationalityID,
+                                DataText: 'Name',
+                                Search: true,
+                                CSSClasses: 'fluid',
+                                DataIconClass: 'CSSIconClass',
+                                IconClass: 'flag',
+                                Disabled: $data.ReadOnly,
+                                DefaultText: true
+                            }
+                        } -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="field">
+                        <label>Citizenship</label>
+                        <!-- ko template: { name: 'DropdownWithIconsTemplate', data: {
+                                Options: dicts.HR.Countries,
+                                Value: CitizenshipID,
+                                Search: true,
+                                CSSClasses: 'fluid',
+                                DataIconClass: 'CSSIconClass',
+                                IconClass: 'flag',
+                                Disabled: $data.ReadOnly,
+                                DefaultText: true
+                            }
+                        } -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="field">
+                        <label>Gender</label>
+                        <!-- ko template: { name: 'DropdownTemplate', data: {
+                                Options: dicts.HR.Genders,
+                                Value: Gender,
+                                CSSClasses: 'fluid',
+                                Disabled: $data.ReadOnly,
+                                DefaultText: true
+                            }
+                        } -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Children</label>
+                            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: Children" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Marital Status</label>
+                        <!-- ko template: { name: 'DropdownTemplate', data: {
+                                Options: dicts.HR.MaritalStatuses,
+                                Value: MaritalStatusID,
+                                Search: true,
+                                CSSClasses: 'fluid',
+                                Disabled: $data.ReadOnly,
+                                DefaultText: true
+                            }
+                        } -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="field">
+                        <label>Religion</label>
+                        <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                            Options: dicts.HR.Religions,
+                            Value: Religion,
+                            Disabled: $data.ReadOnly
+                        } } -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="field">
+                        <label>Birth Date</label>
+                        <input data-bind="datepicker: BirthDate, dpOptions: { manual: true, position: 'top left' }, disable: $data.ReadOnly" />
+                    </div>
+                    <div class="field">
+                        <label>Birth Place</label>
+                        <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                            Options: dicts.HR.BirthPlaces,
+                            Value: BirthPlace,
+                            Disabled: $data.ReadOnly
+                        } } -->
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui purple segment">
+                    <div class="ui dividing header">
+                        <i class="home icon"></i>
+                        Home Address
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Street</label>
+                            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Street" />
+                        </div>
+                        <div class="field">
+                            <label>City</label>
+                            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                                Options: dicts.HR.Cities,
+                                Value: City,
+                                Disabled: $data.ReadOnly
+                            } } -->
+                            <!-- /ko -->
+                        </div>
+                        <div class="field">
+                            <label>Town</label>
+                            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                                Options: dicts.HR.Towns,
+                                Value: Town,
+                                Disabled: $data.ReadOnly
+                            } } -->
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Street (Local)</label>
+                            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: StreetLocal" />
+                        </div>
+                        <div class="field">
+                            <label>City (Local)</label>
+                            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: CityLocal" />
+                        </div>
+                        <div class="field">
+                            <label>Town (Local)</label>
+                            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: TownLocal" />
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Country</label>
+                            <!-- ko template: { name: 'DropdownWithIconsTemplate', data: {
+                                    Options: dicts.HR.Countries,
+                                    Value: CountryID,
+                                    Search: true,
+                                    CSSClasses: 'fluid',
+                                    DataIconClass: 'CSSIconClass',
+                                    IconClass: 'flag',
+                                    Disabled: $data.ReadOnly,
+                                    DefaultText: true
+                                }
+                            } -->
+                            <!-- /ko -->
+                        </div>
+                        <div class="field">
+                            <label>Post Code</label>
+                            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: PostCode" />
+                        </div>
+                    </div>
+                    <div class="ui dividing header"></div>
+                    <div class="field">
+                        <label>Home Phone Number</label>
+                        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: HomeTel" />
+                    </div>
+                    <div class="field">
+                        <label>Work Phone Number</label>
+                        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: WorkTel" />
+                    </div>
+                    <div class="field">
+                        <label>Email Address</label>
+                        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: MailAddress" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="StatusInfoFieldsTemplate">
+    <div class="field">
+        <label>Status</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.EmployeeStatuses,
+                Value: StatusID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Status Reason</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.EmployeeStatusReasons,
+                Value: StatusReasonID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Status Eff. Date</label>
+        <input data-bind="datepicker: ReleaseDate, dpOptions: { manual: true }, disable: $data.ReadOnly" data-position="top left" />
+    </div>
+</script>

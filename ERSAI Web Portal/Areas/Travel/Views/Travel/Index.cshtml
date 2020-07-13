@@ -1,0 +1,186 @@
+﻿<div class="ui top attached demo menu">
+    <a class="item sidebar-toggle">
+        <i class="sidebar icon"></i> Menu
+    </a>
+    <div class="ui right floated simple dropdown item">
+        Test
+        <i class="dropdown icon"></i>
+        @*<div class="menu">
+                <a href="#" class="item"><i class="setting icon"></i>Pengaturan</a>
+                <a href="#" class="item"><i class="sign out icon"></i>Keluar</a>
+            </div>*@
+    </div>
+</div>
+<div class="ui bottom attached segment pushable">
+    @*<div class="ui inverted left vertical sidebar menu">
+            <a class="item" href="#">
+                <h4 class="ui grey header">Test</h4>
+                <p>Sign Out</p>
+            </a>
+            <a class="item">
+                <i class="block layout icon"></i> Dashboard
+            </a>
+            <a class="item">
+                <i class="block layout icon"></i> Lowongan
+            </a>
+            <a class="item">
+                <i class="smile icon"></i> Penyedia
+            </a>
+            <a class="item">
+                <i class="smile icon"></i> Pelamar
+            </a>
+        </div>*@
+    <div class="pusher" style="min-height: 0;">
+        <div class="ui basic segment">
+            <table class="ui celled striped table">
+                <thead>
+                    <tr>
+                        <th colspan="6">
+                            <button type="button" class="btn btn-lg glyphicon glyphicon-plus-sign" title="Click here to add record" data-bind="click:$root.addRecord"></button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th width="40">#</th>
+                        <th class="text-center">
+                            Alias
+                        </th>
+                        <th class="text-center">
+                            Email Account Name
+                        </th>
+
+                        <th class="text-center">
+                        </th>
+                        <th class="text-center">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template: { name: setCurrentTemplate, foreach: coffee }"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="pusher">
+        <div class="ui basic segment">
+            <table class="ui celled striped table">
+                <thead>
+                    <tr>
+                        <th width="40">#</th>
+                        <th class="text-center">
+                            Badge No
+                        </th>
+                        <th class="text-center">
+                            Employee Name
+                        </th>
+                        <th class="text-center">
+                            Department
+                        </th>
+                        <th class="text-center">
+                            Position
+                        </th>
+                        <th class="text-center">
+                            Cost Center
+                        </th>
+                        <th class="text-center">
+                            Work Location
+                        </th>
+                        <th class="text-center">
+                            Prof. Role
+                        </th>
+                        <th class="text-center">
+                            Classification
+                        </th>
+                        <th class="text-center">
+                            Status
+                        </th>
+                        <th class="text-center">
+                            Business Unit
+                        </th>
+                        <th class="text-center">
+                            Contract Date
+                        </th>
+                        <th class="text-center">
+                            Release Date
+                        </th>
+                        <th class="text-center">
+                            Project Date
+                        </th>
+                        <th class="text-center">
+                            Last Vacation
+                        </th>
+                    </tr>
+                </thead>
+                @*<tbody data-bind="template: { name: setCurrentTemplate, foreach: coffee }"></tbody>*@
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/template" id="readonlyTemplate">
+    <tr>
+        <td>
+            <span data-bind="text:id"></span>
+        </td>
+        <td>
+            <span data-bind="text:Alias"></span>
+        </td>
+        <td>
+            <span data-bind="text:Email"></span>
+        </td>     
+        <td>
+            <button class="btn btn-lg glyphicon glyphicon-edit" title="Click here to edit record" data-bind="click: function () { $root.editTemplate($data);}" />
+        </td>
+        <td>
+            <button class="trash icon" title="Click here to delete record" data-bind="click:function () { $root.delete($data); }"></button>
+        </td>
+    </tr>
+</script>
+
+<script type="text/html" id="editTemplate">
+    <tr>
+        <td>
+            <input type="text" class="form-control" data-bind="value:$data.id" id="txteno" disabled />
+        </td>
+        <td>
+            <input type="text" class="form-control" data-bind="value:$data.Alias" id="txteno" />
+        </td>
+        <td>
+            <input type="text" class="form-control" data-bind="value:$data.Email" id="txtename" />
+        </td>
+        <td>
+            <button class="btn btn-lg glyphicon glyphicon-floppy-save" title="Click here to save record" data-bind="click:$root.save"></button>
+        </td>
+        <td>
+            <button class="btn btn-lg glyphicon glyphicon-remove-circle" title="Click here to cancel" data-bind="click:$root.reset"></button>
+        </td>
+    </tr>
+</script>
+
+<div>
+    <span data-bind="value:Message"></span>
+</div>
+
+<style>
+    body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Override the default bootstrap behavior where horizontal description lists
+           will truncate terms that are too long to fit in the left column
+        */
+    .dl-horizontal dt {
+        white-space: normal;
+    }
+
+    /* Set width on the form input elements since they're 100% wide by default */
+    input,
+    select,
+    textarea {
+        max-width: 280px;
+    }
+</style>

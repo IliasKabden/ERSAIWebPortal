@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{865D06DC-2EBF-47A1-9344-CE42645C9C31}</ProjectGuid>
+    <ProjectTypeGuids>{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataModels</RootNamespace>
+    <AssemblyName>DataModels</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.4\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Optimization">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\ContextExtractor.cs" />
+    <Compile Include="Helpers\DictionaryExtensions.cs" />
+    <Compile Include="Migrations\201803200712232_Initial.cs" />
+    <Compile Include="Migrations\201803200712232_Initial.Designer.cs">
+      <DependentUpon>201803200712232_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803250216133_PayslipUserIDDifferentThanID_AppUser_mdb.cs" />
+    <Compile Include="Migrations\201803250216133_PayslipUserIDDifferentThanID_AppUser_mdb.Designer.cs">
+      <DependentUpon>201803250216133_PayslipUserIDDifferentThanID_AppUser_mdb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803291218450_ForeignKeysAddedToERSAIDBTables.cs" />
+    <Compile Include="Migrations\201803291218450_ForeignKeysAddedToERSAIDBTables.Designer.cs">
+      <DependentUpon>201803291218450_ForeignKeysAddedToERSAIDBTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ERSAI\AccommodationBuilding.cs" />
+    <Compile Include="Models\ERSAI\AccommodationHistory.cs" />
+    <Compile Include="Models\ERSAI\AccommodationLiveType.cs" />
+    <Compile Include="Models\ERSAI\AccommodationRoom.cs" />
+    <Compile Include="Models\ERSAI\AccommodationRoomStatus.cs" />
+    <Compile Include="Models\ERSAI\AccommodationRoomType.cs" />
+    <Compile Include="Models\ERSAI\Account.cs" />
+    <Compile Include="Models\ERSAI\approval.cs" />
+    <Compile Include="Models\ERSAI\Audit.cs" />
+    <Compile Include="Models\ERSAI\Audit_Statuses.cs" />
+    <Compile Include="Models\ERSAI\Audit_Types.cs" />
+    <Compile Include="Models\ERSAI\Company.cs" />
+    <Compile Include="Models\ERSAI\Department.cs" />
+    <Compile Include="Models\ERSAI\elAnswer.cs" />
+    <Compile Include="Models\ERSAI\elAssignment.cs" />
+    <Compile Include="Models\ERSAI\elDepartment_DistribList.cs" />
+    <Compile Include="Models\ERSAI\elMaterial.cs" />
+    <Compile Include="Models\ERSAI\elQuestion.cs" />
+    <Compile Include="Models\ERSAI\elStatus.cs" />
+    <Compile Include="Models\ERSAI\elTest.cs" />
+    <Compile Include="Models\ERSAI\elTrainer.cs" />
+    <Compile Include="Models\ERSAI\elTraining.cs" />
+    <Compile Include="Models\ERSAI\Emlpoyee_Statuses.cs" />
+    <Compile Include="Models\ERSAI\Employee.cs" />
+    <Compile Include="Models\ERSAI\EmployeesMobilePhone.cs" />
+    <Compile Include="Models\ERSAI\Employee_ARC.cs" />
+    <Compile Include="Models\ERSAI\Holiday.cs" />
+    <Compile Include="Models\ERSAI\ICTOperator.cs" />
+    <Compile Include="Models\ERSAI\ICTStaff.cs" />
+    <Compile Include="Models\ERSAI\ICTStaff_Temp_Access.cs" />
+    <Compile Include="Models\ERSAI\ICTStatistic.cs" />
+    <Compile Include="Models\ERSAI\InventoryCompany.cs" />
+    <Compile Include="Models\ERSAI\InventoryComputer.cs" />
+    <Compile Include="Models\ERSAI\InventoryComputerModel.cs" />
+    <Compile Include="Models\ERSAI\InventoryHistory.cs" />
+    <Compile Include="Models\ERSAI\InventoryIPPhone.cs" />
+    <Compile Include="Models\ERSAI\InventoryIPPhoneModel.cs" />
+    <Compile Include="Models\ERSAI\InventoryLocation.cs" />
+    <Compile Include="Models\ERSAI\InventoryMobilePhone.cs" />
+    <Compile Include="Models\ERSAI\InventoryMobilePhoneModel.cs" />
+    <Compile Include="Models\ERSAI\InventoryMonitor.cs" />
+    <Compile Include="Models\ERSAI\InventoryMonitorModel.cs" />
+    <Compile Include="Models\ERSAI\InventoryNetworkEquipment.cs" />
+    <Compile Include="Models\ERSAI\InventoryNetworkEquipments_ARC.cs" />
+    <Compile Include="Models\ERSAI\InventoryOtherHardware.cs" />
+    <Compile Include="Models\ERSAI\InventoryPrinter.cs" />
+    <Compile Include="Models\ERSAI\InventoryPrinterModel.cs" />
+    <Compile Include="Models\ERSAI\InventoryRadio.cs" />
+    <Compile Include="Models\ERSAI\InventoryRadioModel.cs" />
+    <Compile Include="Models\ERSAI\InventorySAPUser.cs" />
+    <Compile Include="Models\ERSAI\InventoryServer.cs" />
+    <Compile Include="Models\ERSAI\InventoryServerModel.cs" />
+    <Compile Include="Models\ERSAI\InventoryStatus.cs" />
+    <Compile Include="Models\ERSAI\InventoryToken.cs" />
+    <Compile Include="Models\ERSAI\KPIDoc.cs" />
+    <Compile Include="Models\ERSAI\Language.cs" />
+    <Compile Include="Models\ERSAIContext.cs" />
+    <Compile Include="Models\Filters\SubordinatesKPIDocsFilter.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ERSAI\MonthName.cs" />
+    <Compile Include="Models\ERSAI\Nationality.cs" />
+    <Compile Include="Models\ERSAI\PersonalAccountUser.cs" />
+    <Compile Include="Models\ERSAI\PermissionLevel.cs" />
+    <Compile Include="Models\ERSAI\PhoneDirectory.cs" />
+    <Compile Include="Models\ERSAI\Project.cs" />
+    <Compile Include="Models\ERSAI\ProjectsDevelopment.cs" />
+    <Compile Include="Models\IdentityModelsDTO.cs" />
+    <Compile Include="Models\IMSContext.cs" />
+    <Compile Include="Models\IMS\Bank.cs" />
+    <Compile Include="Models\IMS\DTO\EmployeeDTO.cs" />
+    <Compile Include="Models\IMS\BOCUnit.cs" />
+    <Compile Include="Models\IMS\BusinessUnit.cs" />
+    <Compile Include="Models\IMS\ContractType.cs" />
+    <Compile Include="Models\IMS\CostCenter.cs" />
+    <Compile Include="Models\IMS\CREA.cs" />
+    <Compile Include="Models\IMS\Currency.cs" />
+    <Compile Include="Models\IMS\DeathInsuranceType.cs" />
+    <Compile Include="Models\IMS\Department.cs" />
+    <Compile Include="Models\IMS\EducationLevel.cs" />
+    <Compile Include="Models\IMS\EmployeeClass.cs" />
+    <Compile Include="Models\IMS\EmployeeGroup.cs" />
+    <Compile Include="Models\IMS\Employee.cs" />
+    <Compile Include="Models\IMS\EmployeeStatus.cs" />
+    <Compile Include="Models\IMS\EmployeeStatusReason.cs" />
+    <Compile Include="Models\IMS\HOBUnit.cs" />
+    <Compile Include="Models\IMS\IncomeProtectionType.cs" />
+    <Compile Include="Models\IMS\EmployeeLevel.cs" />
+    <Compile Include="Models\IMS\KeyResource.cs" />
+    <Compile Include="Models\IMS\LifeInsuranceType.cs" />
+    <Compile Include="Models\IMS\MaritalStatus.cs" />
+    <Compile Include="Models\IMS\MedInsuranceType.cs" />
+    <Compile Include="Models\IMS\Continent.cs" />
+    <Compile Include="Models\IMS\Country.cs" />
+    <Compile Include="Models\IMS\Nationalization.cs" />
+    <Compile Include="Models\IMS\PaymentType.cs" />
+    <Compile Include="Models\IMS\PensionGroup.cs" />
+    <Compile Include="Models\IMS\EmployeePositionClass.cs" />
+    <Compile Include="Models\IMS\EmployeePosition.cs" />
+    <Compile Include="Models\IMS\ProfessionalRole.cs" />
+    <Compile Include="Models\IMS\ProfessionalRoleArea.cs" />
+    <Compile Include="Models\IMS\Project.cs" />
+    <Compile Include="Models\IMS\ProjectType.cs" />
+    <Compile Include="Models\IMS\Qualification.cs" />
+    <Compile Include="Models\IMS\RelationshipType.cs" />
+    <Compile Include="Models\IMS\Religion.cs" />
+    <Compile Include="Models\IMS\ProfessionalRoleFamily.cs" />
+    <Compile Include="Models\IMS\RotationType.cs" />
+    <Compile Include="Models\IMS\TicketType.cs" />
+    <Compile Include="Models\IMS\UnionGroup.cs" />
+    <Compile Include="Models\IMS\VisaType.cs" />
+    <Compile Include="Models\IMS\WorkLocation.cs" />
+    <Compile Include="Models\IMS\WorkPermitCategory.cs" />
+    <Compile Include="Models\IMS\WorkPermitLocation.cs" />
+    <Compile Include="Models\IMS\ContractAmendment.cs" />
+    <Compile Include="Models\IMS\ContractAmendmentType.cs" />
+    <Compile Include="Models\Travel\LeaveRequest.cs" />
+    <Compile Include="Models\Travel\Users.cs" />
+    <Compile Include="Models\PayslipContext.cs" />
+    <Compile Include="Models\Payslip\tbl_Employee.cs" />
+    <Compile Include="Models\Payslip\tbl_MonthDesc.cs" />
+    <Compile Include="Models\Payslip\tbl_Payslip.cs" />
+    <Compile Include="Models\TravelContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\ERSAI\RequestAbsence.cs" />
+    <Compile Include="Models\ERSAI\RequestApprovalType.cs" />
+    <Compile Include="Models\ERSAI\RequestFacility.cs" />
+    <Compile Include="Models\ERSAI\RequestFacilityApprovalHistory.cs" />
+    <Compile Include="Models\ERSAI\RequestFacilityApprovalType.cs" />
+    <Compile Include="Models\ERSAI\RequestFacilityComment.cs" />
+    <Compile Include="Models\ERSAI\RequestFacilityPhoneAccess.cs" />
+    <Compile Include="Models\ERSAI\RequestHelpdesk.cs" />
+    <Compile Include="Models\ERSAI\RequestHelpdeskCategory.cs" />
+    <Compile Include="Models\ERSAI\RequestHelpdeskComment.cs" />
+    <Compile Include="Models\ERSAI\RequestHelpdeskPriority.cs" />
+    <Compile Include="Models\ERSAI\RequestICTTask.cs" />
+    <Compile Include="Models\ERSAI\RequestICTTaskCategory.cs" />
+    <Compile Include="Models\ERSAI\RequestICTTaskComment.cs" />
+    <Compile Include="Models\ERSAI\RequestInfrastructure.cs" />
+    <Compile Include="Models\ERSAI\RequestInfrastructureComment.cs" />
+    <Compile Include="Models\ERSAI\RequestPerformer.cs" />
+    <Compile Include="Models\ERSAI\RequestPriority.cs" />
+    <Compile Include="Models\ERSAI\RequestPublicACL.cs" />
+    <Compile Include="Models\ERSAI\RequestPublicACLAccessType.cs" />
+    <Compile Include="Models\ERSAI\RequestPublicACLComment.cs" />
+    <Compile Include="Models\ERSAI\RequestPublicACLDistributionList.cs" />
+    <Compile Include="Models\ERSAI\RequestPublicACLRequestType.cs" />
+    <Compile Include="Models\ERSAI\RequestRadio.cs" />
+    <Compile Include="Models\ERSAI\RequestRadioApprovalHistory.cs" />
+    <Compile Include="Models\ERSAI\RequestRadioComment.cs" />
+    <Compile Include="Models\ERSAI\RequestSimCardAndMobilePhone.cs" />
+    <Compile Include="Models\ERSAI\RequestSimCardAndMobilePhoneApprovalHistory.cs" />
+    <Compile Include="Models\ERSAI\RequestSimCardAndMobilePhoneComment.cs" />
+    <Compile Include="Models\ERSAI\RequestSimCardAndMobilePhonePerformer.cs" />
+    <Compile Include="Models\ERSAI\RequestSimCardAndMobilePhoneTariffPlan.cs" />
+    <Compile Include="Models\ERSAI\RequestStatus.cs" />
+    <Compile Include="Models\ERSAI\RequestType.cs" />
+    <Compile Include="Models\ERSAI\RequestWifi.cs" />
+    <Compile Include="Models\ERSAI\RequestWifiApprovalHistory.cs" />
+    <Compile Include="Models\ERSAI\RequestWifiComment.cs" />
+    <Compile Include="Models\ERSAI\RequestWifiDevice.cs" />
+    <Compile Include="Models\ERSAI\RequestWifiDeviceType.cs" />
+    <Compile Include="Models\ERSAI\RequestWifiGroup.cs" />
+    <Compile Include="Models\ERSAI\RquestAbsenceHistory.cs" />
+    <Compile Include="Models\ERSAI\Signature.cs" />
+    <Compile Include="Models\ERSAI\Site.cs" />
+    <Compile Include="Models\ERSAI\SupervisorManager.cs" />
+    <Compile Include="Models\ERSAI\TechnicalEvaluation.cs" />
+    <Compile Include="Models\ERSAI\Test.cs" />
+    <Compile Include="Models\ERSAI\test4.cs" />
+    <Compile Include="Models\ERSAI\test41.cs" />
+    <Compile Include="Models\ERSAI\TestAdmin.cs" />
+    <Compile Include="Models\ERSAI\TestAnswer.cs" />
+    <Compile Include="Models\ERSAI\TestHistory.cs" />
+    <Compile Include="Models\ERSAI\TestHistory_ARC.cs" />
+    <Compile Include="Models\ERSAI\TestQuestion.cs" />
+    <Compile Include="Models\ERSAI\TransferAndAcceptanceOfICTEquipment.cs" />
+    <Compile Include="Models\ERSAI\UserPermission.cs" />
+    <Compile Include="Models\ERSAI\VideoConferenceCallAlias.cs" />
+    <Compile Include="Models\ERSAI\VisitorsCouter_Data.cs" />
+    <Compile Include="Models\ERSAI\WorkLocation.cs" />
+    <Compile Include="Repositories\IMS\EmployeePhotosRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>App.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>App.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803200712232_Initial.resx">
+      <DependentUpon>201803200712232_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803250216133_PayslipUserIDDifferentThanID_AppUser_mdb.resx">
+      <DependentUpon>201803250216133_PayslipUserIDDifferentThanID_AppUser_mdb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803291218450_ForeignKeysAddedToERSAIDBTables.resx">
+      <DependentUpon>201803291218450_ForeignKeysAddedToERSAIDBTables.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

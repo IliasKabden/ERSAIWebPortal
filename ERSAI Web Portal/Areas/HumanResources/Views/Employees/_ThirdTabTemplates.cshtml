@@ -1,0 +1,741 @@
+﻿<script type="text/html" id="ThirdTabTemplate">
+    <!-- ko with: ContractInfo -->
+    <div class="ui blue segment">
+        <div class="ui dividing header">
+            <i class="file alternate icon"></i>
+            Contract Information
+        </div>
+        <!-- ko template: { name: 'ContractInfoFieldsTemplate', data: $data } --><!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <table class="ui very basic table">
+        <tr class="top aligned">
+            <!-- ko if: JobInfo() || AccomodationInfo() -->
+            <td>
+                <!-- ko with: JobInfo -->
+                <div class="ui teal segment">
+                    <div class="ui dividing header">Job Information</div>
+                    <!-- ko template: { name: 'JobInfoFieldsTemplate', data: $data } --><!-- /ko -->
+                </div>
+                <!-- /ko -->
+                <!-- ko with: AccomodationInfo -->
+                <div class="ui brown segment">
+                    <div class="ui dividing header">Accomodation Information</div>
+                    <!-- ko template: { name: 'AccomodationInfoFieldsTemplate', data: $data } --><!-- /ko -->
+                </div>
+                <!-- /ko -->
+            </td>
+            <!-- /ko -->
+            <!-- ko if: BankAccountInfo -->
+            <td>
+                <!-- ko with: BankAccountInfo -->
+                <div class="ui purple segment">
+                    <div class="ui dividing header">Bank Account Information</div>
+                    <!-- ko template: { name: 'BankAccountInfoFieldsTemplate', data: $data } --><!-- /ko -->
+                </div>
+                <!-- /ko -->
+            </td>
+            <!-- /ko -->
+        </tr>
+    </table>
+    <!-- ko with: ProfessionalRoleInfo -->
+    <div class="ui purple segment">
+        <div class="ui dividing header">Professional Role Information</div>
+        <!-- ko template: { name: 'ProfessionalRoleInfoFieldsTemplate', data: $data } --><!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko with: SalaryInfo -->
+    <div class="ui purple segment">
+        <div class="ui dividing header">
+            <i class="dollar sign icon"></i>
+            Salary Information
+        </div>
+        <!-- ko template: { name: 'SalaryInfoFieldsTemplate', data: $data } --><!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko with: ContractOtherInfo -->
+    <div class="ui teal segment">
+        <!-- ko template: { name: 'ContractOtherInfoFieldsTemplate', data: $data } --><!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko with: YTDInfo -->
+    <div class="ui red segment">
+        <!-- ko template: { name: 'YTDInfoFieldsTemplate', data: $data } --><!-- /ko -->
+    </div>
+    <!-- /ko -->
+</script>
+<script type="text/html" id="ContractInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Number</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Number" />
+        </div>
+        <div class="field">
+            <label>Duration (months)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: Duration" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Initial Start Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: InitialStartDate, dpOptions: { manual: true }" />
+        </div>
+        <div class="field">
+            <label>Project Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: ProjectDate, dpOptions: { manual: true }" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Start Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: StartDate, dpOptions: { manual: true }" />
+        </div>
+        <div class="field">
+            <label>End Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: EndDate, dpOptions: { manual: true }" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Last Amendment Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: LastAmendmentDate, dpOptions: { manual: true }" />
+        </div>
+        <div class="field">
+            <label>Last Vacation Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: LastVacationLastDate, dpOptions: { manual: true }" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Monthly Working Hours</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: MonthlyWorkingHours" />
+        </div>
+        <div class="field">
+            <label>Monthly Working Hours (Other)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: MonthlyWorkingHours2" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Rotation Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.RotationTypes,
+                    Value: RotationTypeID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Rotation Type (Other)</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.RotationTypes,
+                    Value: RotationType2ID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Contract Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.ContractTypes,
+                    Value: TypeID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Contract Type (Other)</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.ContractTypes,
+                    Value: Type2ID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Contract Currency</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.Currencies,
+                    Value: CurrencyID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Holiday Fund Entitlement (Day/s)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: HolidayFundDays" />
+        </div>
+        <div class="field">
+            <label>Bonus Fund Entitlement (Day/s)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: BonusFundDays" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Probation period (Day/s)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: ProbationPeriodInDays" />
+        </div>
+        <div class="field">
+            <label>Notice period before leaving (Day/s)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: BeforeLeaveNoticePeriodInDays" />
+        </div>
+    </div>
+</script>
+<script type="text/html" id="AccomodationInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Location</label>
+            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                Options: dicts.HR.AccomodationLocations,
+                Value: AccomodationLocation,
+                Disabled: $data.ReadOnly
+            } } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Check-In Date</label>
+            <input type="number" data-bind="disable: $data.ReadOnly, datepicker: CampInDate, dpOptions: { manual: true }" />
+        </div>
+    </div>
+</script>
+<script type="text/html" id="JobInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Cost Center</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.CostCenters,
+                    Value: CostCenterID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>CREA/Job Class</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.CREAValues,
+                    Value: CREA_ID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Level</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.EmployeeLevels,
+                    Value: LevelID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Qualification</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.Qualifications,
+                    Value: QualificationID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Work Location</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.WorkLocations,
+                    Value: WorkLocationID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Class (Tipo Terzi)</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.EmployeeClasses,
+                    Value: ClassID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Key Resource (Evaluation Class)</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.KeyResources,
+                    Value: KeyResourceID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Nationalization</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.Nationalizations,
+                    Value: NationalizationID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+<script type="text/html" id="BankAccountInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Payment Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.PaymentTypes,
+                    Value: PaymentTypeID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Vendor ID</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: PaymentVendorID" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Account Number</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Number" />
+        </div>
+        <div class="field">
+            <label>IBAN Number</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: IBAN" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Beneficiary Name</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: BeneficiaryName" />
+        </div>
+        <div class="field">
+            <label>Local Beneficiary Name</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: LocalBeneficiaryName" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Bank</label>
+            <!-- ko template: { name: "SearchSelectTemplate", data: {
+                Options: dicts.HR.Banks,
+                Value: BankID,
+                Disabled: $data.ReadOnly
+            } } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Local Bank Name</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: LocalBankName" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Bank Address</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: BankAddress" />
+        </div>
+        <div class="field">
+            <label>Bank SWIFT</label>
+            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                Options: dicts.HR.BankSWIFTValues,
+                Value: BankSWIFT,
+                Disabled: $data.ReadOnly
+            } } -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+<script type="text/html" id="SalaryInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Basic Salary</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: BasicSalary" />
+        </div>
+        <div class="field">
+            <label>Basic Salary (Other)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: BasicSalary2" />
+        </div>
+        <div class="field">
+            <label>Overtime Rate</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: OvertimeRate" />
+        </div>
+        <div class="field">
+            <label>Overtime Rate (Other)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: OvertimeRate2" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Weekdays OT Rate</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: OvertimeRateWeekdays" />
+        </div>
+        <div class="field">
+            <label>Weekends OT Rate</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: OvertimeRateWeekends" />
+        </div>
+        <div class="field">
+            <label>Vacation/Day Rate</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: VacationDaysRate" />
+        </div>
+        <div class="field">
+            <label>Quay Rate</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: QuayRate" />
+        </div>
+        <div class="field">
+            <label>Overtime Allowance (Lumpsum)</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: OvertimeAllowance" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Hardship Allowance</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: HardshipAllowance" />
+        </div>
+        <div class="field">
+            <label>Site Allowance</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: SiteAllowance" />
+        </div>
+        <div class="field">
+            <label>Site Allowance Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.SiteAllowanceTypes,
+                    Value: SiteAllowanceTypeID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Living/Housing Allowance</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: LivingAllowance" />
+        </div>
+        <div class="field">
+            <label>Living Allowance Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.LivingAllowanceTypes,
+                    Value: LivingAllowanceTypeID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Trade Union</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.UnionGroups,
+                    Value: UnionID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Food Allowance</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: FoodAllowance" />
+        </div>
+        <div class="field">
+            <label>Accomodation Allowance</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: AccomodationAllowance" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Trade Union Member</label>
+            <div class="ui fitted checkbox">
+                <input type="checkbox" data-bind="checked: IsTradeUnionMember, attr: { disabled: $data.ReadOnly }" />
+                <label></label>
+            </div>
+        </div>
+        <div class="field">
+            <label>In-kind Taxable</label>
+            <div class="ui fitted checkbox">
+                <input type="checkbox" data-bind="checked: IsKindTaxable, attr: { disabled: $data.ReadOnly }" />
+                <label></label>
+            </div>
+        </div>
+        <div class="field">
+            <label>Tax Exempted</label>
+            <div class="ui fitted checkbox">
+                <input type="checkbox" data-bind="checked: IsExemptedFromTaxes, attr: { disabled: $data.ReadOnly }" />
+                <label></label>
+            </div>
+        </div>
+        <div class="field">
+            <label>Pension Exempted</label>
+            <div class="ui fitted checkbox">
+                <input type="checkbox" data-bind="checked: IsExemptedFromPensionPayments, attr: { disabled: $data.ReadOnly }" />
+                <label></label>
+            </div>
+        </div>
+        <div class="field">
+            <label>OPFC Pension</label>
+            <div class="ui fitted checkbox">
+                <input type="checkbox" data-bind="checked: IsPensionOPFC, attr: { disabled: $data.ReadOnly }" />
+                <label></label>
+            </div>
+        </div>
+        <div class="field">
+            <label>CSHI Exempted</label>
+            <div class="ui fitted checkbox">
+                <input type="checkbox" data-bind="checked: IsExemptedFromCSHI, attr: { disabled: $data.ReadOnly }" />
+                <label></label>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="ProfessionalRoleInfoFieldsTemplate">
+    <div class="field">
+        <label>Job Role</label>
+        <!-- ko template: { name: "SearchSelectTemplate", data: {
+            Options: dicts.HR.ProfessionalRoles,
+            Value: RoleID,
+            Disabled: $data.ReadOnly
+        } } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>HOB Unit (OC)</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.HOBUnits,
+                Value: HOBUnitID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Business of Contribution</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.BOCUnits,
+                Value: BOCUnitID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+</script>
+<script type="text/html" id="YTDInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>YTD Gross Salary</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalGrossSalary" />
+        </div>
+        <div class="field">
+            <label>YTD Gross Total Income</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalGrossAllowance" />
+        </div>
+        <div class="field">
+            <label>YTD Total Exemptions</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalExemption" />
+        </div>
+        <div class="field">
+            <label>YTD Total MCB</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalMCB" />
+        </div>
+        <div class="field">
+            <label>YTD Total Tax</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalTax" />
+        </div>
+        <div class="field">
+            <label>YTD Total Pension</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalPension" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Acc. Bonus Amount</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalBonus" />
+        </div>
+        <div class="field">
+            <label>Acc. Bonus Days</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: BFund" />
+        </div>
+        <div class="field">
+            <label>Acc. Vacation Amount</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalVacMoney" />
+        </div>
+        <div class="field">
+            <label>Acc. Vacation Days</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: HFund" />
+        </div>
+        <div class="field">
+            <label>Acc. Days on Site</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: YTDTotalRotationDays" />
+        </div>
+    </div>
+</script>
+<script type="text/html" id="ContractOtherInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Annual Rotation Allowance</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: AnnualRotationAllowance" />
+        </div>
+        <div class="field">
+            <label>Annual Basic Salary</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: AnnualBasicSalary" />
+        </div>
+        <div class="field">
+            <label>Annual Overtime Allowance</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: AnnualOvertimeAllowance" />
+        </div>
+    </div>
+    <div class="field">
+        <label>Family Status</label>
+        <div class="ui checkbox">
+            <input type="checkbox" data-bind="checked: ContractIncludesFamily, attr: { disabled: $data.ReadOnly }" />
+            <label data-bind="text: ContractIncludesFamily() == true ? 'Family is included' : 'Family is not included'"></label>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Travels Lumpsum</label>
+            <input type="number" data-bind="attr: { readonly: $data.ReadOnly }, value: TotalTravelSum" />
+        </div>
+        <div class="field">
+            <label>Airline Ticket Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.AirlineTicketTypes,
+                    Value: AirlineTicketTypeID,
+                    DefaultText: "Not specified",
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Death Insurance Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.DeathInsuranceTypes,
+                    Value: DeathInsuranceTypeID,
+                    DefaultText: "Not specified",
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Medical Insurance Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.MedInsuranceTypes,
+                    Value: MedInsuranceTypeID,
+                    DefaultText: "Not specified",
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Life Insurance Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.LifeInsuranceTypes,
+                    Value: AirlineTicketTypeID,
+                    DefaultText: "Not specified",
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Income Protection Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.IncomeProtectionTypes,
+                    Value: IncomeProtectionTypeID,
+                    DefaultText: "Not specified",
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>

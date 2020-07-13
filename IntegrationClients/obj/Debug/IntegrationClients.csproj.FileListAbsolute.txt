@@ -1,0 +1,8 @@
+C:\Users\KSA1765829\source\repos\ERSAIWebPortal\IntegrationClients\bin\Debug\IntegrationClients.dll
+C:\Users\KSA1765829\source\repos\ERSAIWebPortal\IntegrationClients\bin\Debug\IntegrationClients.pdb
+C:\Users\KSA1765829\source\repos\ERSAIWebPortal\IntegrationClients\bin\Debug\InfobipClientLib.dll
+C:\Users\KSA1765829\source\repos\ERSAIWebPortal\IntegrationClients\obj\Debug\IntegrationClients.csprojResolveAssemblyReference.cache
+C:\Users\KSA1765829\source\repos\ERSAIWebPortal\IntegrationClients\obj\Debug\IntegrationClients.csproj.CoreCompileInputs.cache
+C:\Users\KSA1765829\source\repos\ERSAIWebPortal\IntegrationClients\obj\Debug\IntegrationClients.csproj.CopyComplete
+C:\Users\KSA1765829\source\repos\ERSAIWebPortal\IntegrationClients\obj\Debug\IntegrationClients.dll
+C:\Users\KSA1765829\source\repos\ERSAIWebPortal\IntegrationClients\obj\Debug\IntegrationClients.pdb

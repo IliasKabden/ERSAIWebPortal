@@ -1,0 +1,85 @@
+﻿@model ERSAI_Web_Portal.Areas.PersonalAccount.Models.PersonalDetailsVM
+@{
+    ViewBag.Title = Model?.FullName;
+}
+
+<div class="ui top attached item tabular menu" data-bind="css: KPIDocs().AnySubordinate() ? 'seven' : 'six'">
+    <a class="active item" data-tab="EmployeeDetailsTab">
+        <i class="large user circle icon"></i>
+        <span class="hiddenIfMobile">Personal Information</span>
+    </a>
+    <!-- ko with: Payslips -->
+    <a class="item" data-tab="PayslipsTab" data-bind="click: Load">
+        <i class="large calculator icon"></i>
+        <span class="hiddenIfMobile">Payslips</span>
+    </a>
+    <!-- /ko -->
+    <!-- ko with: KPIDocs -->
+    <a class="item" data-tab="MyKPIDocsTab" data-bind="click: LoadMyDocs">
+        <i class="large chart bar icon"></i>
+        <span class="hiddenIfMobile">My IBS Cards</span>
+    </a>
+    <a class="item" data-tab="MySubordinatesKPIDocsTab" data-bind="click: LoadMySubordinatesDocs, visibleAnimated: AnySubordinate" style="display: none">
+        <i class="large chart line icon"></i>
+        <span class="hiddenIfMobile">My Subordinates' IBS Cards</span>
+    </a>
+    <!-- /ko -->
+    <a class="item" data-tab="LeavesTab" data-bind="click: LoadMyDocs">
+        <i class="large plane icon disabled"></i>
+        <span class="hiddenIfMobile">Leave</span>
+    </a>   
+    <a class="item" data-tab="MissionsTab">
+        <i class="large globe icon disabled"></i>
+        <span class="hiddenIfMobile">Missions</span>
+    </a>
+    <a class="item" data-tab="ToolsTab">
+        <i class="large wrench icon disabled"></i>
+        <span class="hiddenIfMobile">Tools</span>
+    </a>
+</div>
+
+<div class="ui bottom attached active tab segment" data-tab="EmployeeDetailsTab">
+    @if (Model != null)
+    {
+        @Html.Partial("_EmployeeDetailsPartial", Model)
+    }
+    else
+    {
+        <h2 class="h2">No information found</h2>
+    }
+</div>
+<!-- ko with: Payslips -->
+<div class="ui bottom attached tab segment" data-tab="PayslipsTab">
+    @Html.Partial("_PayslipsPartial")
+</div>
+<!-- /ko -->
+<!-- ko with: KPIDocs -->
+<div class="ui bottom attached tab segment" data-tab="MyKPIDocsTab">
+    <!-- ko template: { name: "MyKPIDocsListTemplate", data: MyDocs } --><!-- /ko -->
+</div>
+<div class="ui bottom attached tab segment" data-tab="MySubordinatesKPIDocsTab">
+    <div class="ui fluid icon input">
+        <input type="text" placeholder="Search by badge number"
+               data-bind="value: MySubordinatesDocsFilter.BadgeNumberLike, onEnterKey: LoadMySubordinatesDocs" />
+        <i class="search link icon" data-bind="click: LoadMySubordinatesDocs"></i>
+    </div>
+    <!-- ko template: { name: "MySubordinatesKPIDocsListTemplate", data: MySubordinatesDocs } --><!-- /ko -->
+</div>
+<div class="ui bottom attached tab segment" data-tab="LeavesTab">
+    <h2 class="h2">Under Approval for Development</h2>
+</div>
+<div class="ui bottom attached tab segment" data-tab="MissionsTab">
+    <h2 class="h2">Under Approval for Development</h2>
+</div>
+<div class="ui bottom attached tab segment" data-tab="ToolsTab">
+    <h2 class="h2">Under Approval for Development</h2>
+</div>
+<!-- /ko -->
+<script>
+    $('.menu .item').tab();
+</script>
+@section Scripts{
+    @Html.Partial("_MyKPIDocsTemplatesPartial")
+    @Scripts.Render("~/Scripts/app/views/payslips.viewmodel.es5.js")
+    @Scripts.Render("~/Scripts/app/views/KPIDocs.viewmodel.es5.js")
+}

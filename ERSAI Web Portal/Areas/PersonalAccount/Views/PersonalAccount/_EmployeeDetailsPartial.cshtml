@@ -1,0 +1,180 @@
+﻿@model ERSAI_Web_Portal.Areas.PersonalAccount.Models.PersonalDetailsVM
+@{ var colSpan = "2"; }
+<table class="ui compact small celled table" id="PersonalInfoTable">
+    <tbody>
+        <tr class="warning center aligned"><td colspan="10">Employee Info</td></tr>
+        <tr>
+            <td class="collapsing">Badge</td>
+            <td>@Model.BadgeNumber</td>
+            <td rowspan="@(Model.MailAddress != null ? 3 : 2)" class="collapsing">
+                <img class="ui small image" src="@ERSAI_Web_Portal.Areas.AreaNames.PersonalAccount/Photo">
+            </td>
+        </tr>
+        @if (Model.MailAddress != null)
+        {
+            <tr>
+                <td>Email</td>
+                <td>@Model.MailAddress</td>
+            </tr>
+        }
+        <tr>
+            <td>Employee Name</td>
+            <td colspan="@colSpan">@Model.FullName</td>
+        </tr>
+        <tr class="warning center aligned"><td colspan="10">Resource Information</td></tr>
+        @if (Model.BusinessUnit != null)
+        {
+            <tr>
+                <td>Business Unit</td>
+                <td colspan="@colSpan">@Model.BusinessUnit</td>
+            </tr>
+        }
+        <tr>
+            <td>Department</td>
+            <td colspan="@colSpan">@Model.Department</td>
+        </tr>
+        <tr>
+            <td>Position</td>
+            <td colspan="@colSpan">@Model.ContractPosition</td>
+        </tr>
+        <tr>
+            <td>Cost Center</td>
+            <td colspan="@colSpan">@Model.CostCenter</td>
+        </tr>
+        <tr>
+            <td>Work Location</td>
+            <td colspan="@colSpan">@Model.WorkLocation</td>
+        </tr>
+        <tr>
+            <td>Prof. Role</td>
+            <td colspan="@colSpan">@Model.ProfessionalRole</td>
+        </tr>
+        @if (Model.Classification != null)
+        {
+            <tr>
+                <td>Classification</td>
+                <td colspan="@colSpan">@Model.Classification</td>
+            </tr>
+        }
+        <tr>
+            <td>Status</td>
+            <td colspan="@colSpan">@Model.Status</td>
+        </tr>
+        <tr>
+            <td>Contract Start Date</td>
+            <td colspan="@colSpan">@(Model.ContractStartDate?.ToShortDateString())</td>
+        </tr>
+        @if (Model.ReleaseDate != null)
+        {
+            <tr>
+                <td>Release Date</td>
+                <td colspan="@colSpan">@(Model.ReleaseDate?.ToShortDateString())</td>
+            </tr>
+        }
+        <tr class="warning center aligned"><td colspan="10">Vacation/Rotation Information</td></tr>
+        @if (Model.ProjectDate != null)
+        {
+            <tr>
+                <td>Project Date</td>
+                <td colspan="@colSpan">@(Model.ProjectDate.Value.ToShortDateString())</td>
+            </tr>
+        }
+        @if (Model.LastVacationLastDate != null)
+        {
+            <tr>
+                <td>Last Rotation Start Date</td>
+                <td colspan="@colSpan">@(Model.LastVacationLastDate.Value.ToShortDateString())</td>
+            </tr>
+        }
+        @if (Model.DaysOnSiteAfterLastVacation != null)
+        {
+            <tr>
+                <td>Days on site (after last vacation)</td>
+                <td colspan="@colSpan">@Model.DaysOnSiteAfterLastVacation</td>
+            </tr>
+        }
+        @if (Model.RotationInfo != null)
+        {
+            var rot = Model.RotationInfo;
+            <tr>
+                <td>Days on site for rotation type</td>
+                <td colspan="@colSpan">@rot.DaysOnSite</td>
+            </tr>
+            <tr>
+                <td>Days on vacation for rotation type (entitled days)</td>
+                <td colspan="@colSpan">@rot.DaysOffSite</td>
+            </tr>
+            if (rot.AccumulatedVacationDays != null)
+            {
+                <tr>
+                    <td>Accumulated (Entitled) days for vacation</td>
+                    <td colspan="@colSpan">@rot.AccumulatedVacationDays.Value.ToString("N2")</td>
+                </tr>
+            }
+            if (rot.NextForeseenVacationStartDate != null)
+            {
+                <tr class="positive">
+                    <td>Next foreseen vacation start date</td>
+                    <td colspan="@colSpan">@rot.NextForeseenVacationStartDate.Value.ToShortDateString()</td>
+                </tr>
+            }
+            if (rot.NextForeseenVacationStartDate != null)
+            {
+                <tr class="positive">
+                    <td>Next foreseen rotation start date</td>
+                    <td colspan="@colSpan">@rot.NextForeseenRotationStartDate.Value.ToShortDateString()</td>
+                </tr>
+            }
+        }
+        @if (Model.VisaExpirationDate != null)
+        {
+            var expiresSoon = (Model.VisaExpirationDate.Value - DateTime.Now).Days <= 60;
+            <tr @(expiresSoon ? "class=error" : null)>
+                <td>Visa expiration date</td>
+                <td colspan="@colSpan">@Model.VisaExpirationDate.Value.ToShortDateString()</td>
+            </tr>
+        }
+        @if (Model.WorkPermitExpirationDate != null)
+        {
+            var expiresSoon = (Model.WorkPermitExpirationDate.Value - DateTime.Now).Days <= 60;
+            <tr @(expiresSoon ? "class=error" : null)>
+                <td>Work permit expiration date</td>
+                <td colspan="@colSpan">@Model.WorkPermitExpirationDate.Value.ToShortDateString()</td>
+            </tr>
+        }
+        @if (Model.PoliceOfficeRegExpirationDate != null)
+        {
+            var expiresSoon = (Model.PoliceOfficeRegExpirationDate.Value - DateTime.Now).Days <= 60;
+            <tr @(expiresSoon ? "class=error" : null)>
+                <td>Police reg. expiration date</td>
+                <td colspan="@colSpan">@Model.PoliceOfficeRegExpirationDate.Value.ToShortDateString()</td>
+            </tr>
+        }
+
+        @if (Model.PassportInfo != null)
+        {
+            <tr class="warning center aligned"><td colspan="10">Passport Information</td></tr>
+            <tr>
+                <td>Number</td>
+                <td colspan="@colSpan">@Model.PassportInfo.Number</td>
+            </tr>
+            <tr>
+                <td>Issued Date</td>
+                <td colspan="@colSpan">@(Model.PassportInfo.IssuedDate?.ToShortDateString())</td>
+            </tr>
+            <tr>
+                <td>Expiration Date</td>
+                <td colspan="@colSpan">@(Model.PassportInfo.ExpirationDate?.ToShortDateString())</td>
+            </tr>
+            <tr>
+                <td>Issued By</td>
+                <td colspan="@colSpan">@Model.PassportInfo.IssuedBy</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    #PersonalInfoTable td:first-child {
+        white-space: nowrap;
+    }
+</style>

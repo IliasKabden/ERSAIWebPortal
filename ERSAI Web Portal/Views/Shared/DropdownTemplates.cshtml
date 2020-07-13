@@ -1,0 +1,158 @@
+﻿<!--
+    <script>
+        {
+            Options:[],
+            Value:observable
+            DataValue: "",
+            DataText: "",
+            DefaultText:"",
+            Search: bool,
+            Disabled: Boolean/observable,
+            CSSClasses: ""
+        }
+    </script>
+-->
+
+<script type="text/html" id="DropdownTemplate">
+    <!-- ko template: {
+        afterRender: AfterRenderFunctions.Dropdown.DropdownAfterRender
+    } -->
+    <div class="ui selection dropdown" data-bind="css: { disabled: $data.Disabled }, validationOptions: { insertMessages: false }, style: { opacity: ko.unwrap($data.Disabled) ? 0.8 : null }">
+        <input type="hidden" data-bind="value: Value">
+        <i class="dropdown icon"></i>
+        <div class="text"></div>
+        <div class="menu">
+            <!-- ko with: $data.DefaultText -->
+            <div class="item" data-value data-bind="text: typeof $data == 'boolean' ? 'Not selected' : $data"></div>
+            <!-- /ko -->
+            <!-- ko foreach: Options -->
+            <div class="item" data-bind="attr: { 'data-value': $data[$parent.DataValue || 'ID'] }, text: $data[$parent.DataText || 'Name']"></div>
+            <!-- /ko -->
+        </div>
+    </div>
+    <span data-bind="validationMessage: Value, css: ko.validation.configuration.errorMessageClass"></span>
+    <!-- /ko -->
+</script>
+<script type="text/html" id="DropdownWithIconsTemplate">
+    <!-- ko template: {
+        afterRender: AfterRenderFunctions.Dropdown.DropdownAfterRender
+    } -->
+    <div class="ui selection dropdown" data-bind="css: { disabled: $data.Disabled }, style: { opacity: ko.unwrap($data.Disabled) ? 0.8 : null }">
+        <input type="hidden" data-bind="value: Value">
+        <i class="dropdown icon"></i>
+        <div class="text"></div>
+        <div class="menu">
+            <!-- ko with: $data.DefaultText -->
+            <div class="item" data-value data-bind="text: typeof $data == 'boolean' ? 'Not selected' : $data"></div>
+            <!-- /ko -->
+            <!-- ko foreach: Options -->
+            <div class="item" data-bind="attr: { 'data-value': $data[$parent.DataValue || 'ID'] }">
+                <!-- ko if: $parent.DataIconClass -->
+                <i data-bind="css: $data[$parent.DataIconClass] + ' ' + ($parent.IconClass || 'icon')"></i>
+                <!-- /ko -->
+                <span data-bind="text: $data[$parent.DataText || 'Name']"></span>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+    <!-- /ko -->
+</script>
+
+<!--
+    <script>
+        {
+            Options:[],
+            Values: observableArray
+            DataValue: "",
+            DataText: "",
+            DataTooltip:"",
+            DataDescription: "",
+            DefaultText:"",
+            CSSClasses: "",
+            ValueType: Type
+        }
+    </script>
+-->
+
+<script type="text/html" id="MultipleSelectionDropdownTemplate">
+    <!-- ko template: {
+        afterRender: AfterRenderFunctions.Dropdown.MultipleSelectionDropdownAfterRender
+    } -->
+    <div class="ui multiple search selection dropdown" data-bind="css: $data.CSSClasses">
+        <i class="dropdown icon"></i>
+        <div class="default text" data-bind="text: $data.DefaultText">Не выбрано Анализов</div>
+        <div class="menu" data-bind="foreach: $data.Options">
+            <div class="item" data-bind="attr: { 'data-value': $data[$parent.DataValue || 'ID'], title: $data[$parent.DataTooltip] }">
+                <span data-bind="text: $data[$parent.DataText || 'Name']"></span>
+                <!-- ko with: $data[$parent.DataDescription] -->
+                <span data-bind="text: $data" style="display: block"></span>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</script>
+<script>
+    AfterRenderFunctions = window.AfterRenderFunctions || {};
+    AfterRenderFunctions.Dropdown = {
+        DropdownAfterRender: function (HTML, data) {
+            var dropdown = $(HTML).filter('.ui.dropdown');
+            if (data.Search == true)
+                dropdown.addClass("search");
+            if (data.CSSClasses != null)
+                dropdown.addClass(data.CSSClasses);
+            dropdown.dropdown({
+                fullTextSearch: data.fullTextSearch || 'exact'
+            });
+            data.Value.subscribe(function (value) {
+                if (value || data.DefaultText) {
+                    dropdown.dropdown("set selected", value || "");
+                    if (!value)
+                        data.Value(null);
+                }
+                else
+                    dropdown.dropdown("clear");
+            });
+        },
+        MultipleSelectionDropdownAfterRender: function (HTML, data) {
+            var pauseOnAddAndOnRemoveCallbacks = false;
+
+            var dropdown = $(HTML).filter('.ui.dropdown');
+            dropdown.dropdown({
+                fullTextSearch: 'exact',
+                onAdd: function (value, text, choice) {
+                    if (!pauseOnAddAndOnRemoveCallbacks)
+                        data.Values.push(data.ValueType ? data.ValueType(value) : value);
+                },
+                onRemove: function (value, text, choice) {
+                    if (!pauseOnAddAndOnRemoveCallbacks)
+                        data.Values.remove(data.ValueType ? data.ValueType(value) : value);
+                }
+            });
+            dropdown.Clear = function () {
+                data.Values.removeAll();
+                dropdown.dropdown('clear');
+            };
+            data.Values.DropdownElement = dropdown;
+
+            var Subscription = data.Values.subscribe(function (values) {
+                pauseOnAddAndOnRemoveCallbacks = true;
+
+                if (values.length > 0)
+                    dropdown.dropdown('set selected', values.map(function (v) { return String(v) }));
+                else
+                    dropdown.dropdown('clear');
+
+                pauseOnAddAndOnRemoveCallbacks = false;
+            });
+            data.Values.valueHasMutated();
+
+            ko.utils.domNodeDisposal.addDisposeCallback(HTML, function () {
+                // This will be called when the element is removed by Knockout or
+                // if some other part of your code calls ko.removeNode(element)
+                console.log(Subscription);
+                Subscription.dispose();
+            });
+        },
+    };
+</script>

@@ -1,0 +1,28 @@
+﻿<div id="modalsContainer"></div>
+<script type="text/html" id="DialogModalTemplate">
+    <div class="ui basic modal" data-bind="attr: { id: ID }">
+        <div class="ui header" data-bind="text: $data.headerText"></div>
+        <div class="content">
+            <p data-bind="html: text"></p>
+        </div>
+        <div class="actions" data-bind="foreach: actions">
+            <div class="ui button" data-bind="click: $data.Callback, text: $data.ButtonText || 'OK', css: $data.ButtonClass || 'green ok'"></div>
+        </div>
+    </div>
+</script>
+<script>
+    AfterRenderFunctions = window.AfterRenderFunctions || {};
+    AfterRenderFunctions.Dialog = {
+        AfterRender: function (HTML, data) {
+            var modalElement = $(HTML).filter('.ui.modal');
+            var modal = modalElement.modal({
+                closable: false,
+                multiple: true,
+                onHidden: function () {
+                    $(modal).remove();
+                }
+            });
+            modal.modal('show');
+        }
+    }
+</script>

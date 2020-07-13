@@ -1,0 +1,29 @@
+﻿@using DataModels;
+@{
+    var HRMenuItems = string.Empty;
+}
+
+@if (User.IsInRole(AppRole.HREmployeesCreatorRole) || User.IsInRole(AppRole.HREmployeesEditorRole) || User.IsInRole(AppRole.HREmployeesViewerRole))
+{
+    HRMenuItems += $"<a class='item' href='/{ERSAI_Web_Portal.Areas.AreaNames.HumanResources}/Employees'><i class='users icon'></i>Employees</a>";
+}
+@if (!string.IsNullOrEmpty(HRMenuItems))
+{
+    <!-- ko template: { afterRender: function(HTML) {
+            /*$(HTML).filter('.ui.dropdown').dropdown()*/
+        } } -->
+    <div class="ui simple dropdown item">
+        HR
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            @Html.Raw(HRMenuItems)
+        </div>
+    </div>
+    <!-- /ko -->
+}
+@if (User.IsInRole(AppRole.UsersManagerRole))
+{
+    <a class="item" href="/UserManagement">
+        User management
+    </a>
+}

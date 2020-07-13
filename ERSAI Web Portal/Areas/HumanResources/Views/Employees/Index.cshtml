@@ -1,0 +1,74 @@
+﻿<!-- ko with: Employees -->
+<div class="ui equal width form" data-bind="visible: SelectedView() == 'SelectedEmployee'">
+    <div class="fields">
+        <div class="field">
+            <button class="ui fluid labeled icon button" data-bind="click: SelectedView.bind(null, 'EmployeesList')">
+                <i class="left chevron icon"></i>
+                Back to the list
+            </button>
+        </div>
+        <div class="field">
+            <div class="ui fluid icon input">
+                <input type="text" data-bind="onEnterKey: SelectEmployeeByBadgeNumber" placeholder="Enter badge number and press enter" />
+                <i class="search icon"></i>
+            </div>
+        </div>
+    </div>
+    <div data-bind="with: SelectedEmployee" id="SelectedEmployeeFieldsContainer">
+        <div class="ui top attached stackable tabular menu" data-bind="foreach: $parent.tabs">
+            <!-- ko if: $data.ShowIf == null || $data.ShowIf.call($parent) -->
+            <a class="tab item" data-bind="click: $parents[1].SelectedTab.bind(null, $data), css: { active: $parents[1].SelectedTab() == $data }, style: { width: $parent.TabItemWidth }">
+                <!-- ko foreach: $data.IconClasses -->
+                <i class="large icon" data-bind="css: $data"></i>
+                <!-- /ko -->
+                <span data-bind="text: Name"></span>
+            </a>
+            <!-- /ko -->
+        </div>
+        <!-- ko foreach: $parent.tabs -->
+        <div class="ui bottom attached tab segment" data-bind="css: { active: $parents[1].SelectedTab() == $data }">
+            <!-- ko template: { name: $data.TemplateName, if: $data.TemplateDataField ? $parent[TemplateDataField] : $parent, data: $parent[$data.TemplateDataField] || $parent } --><!-- /ko -->
+        </div>
+        <!-- /ko -->
+        <!-- ko if: User.IsInRole('@DataModels.AppRole.HREmployeesCreatorRole') || User.IsInRole('@DataModels.AppRole.HREmployeesEditorRole') -->
+        <div class="field">
+            <div class="ui green fluid button" data-bind="click: $parent.ValidateAndSaveSelectedEmployee">Save employee data</div>
+        </div>
+        <!-- /ko -->
+    </div>
+</div>
+<div data-bind="with: EmployeesList, visible: SelectedView() == 'EmployeesList'">
+    <div class="ui equal width form">
+        <div class="fields">
+            <!-- ko if: User.IsInRole("@DataModels.AppRole.HREmployeesCreatorRole") -->
+            <div class="field">
+                <button class="ui fluid labeled green icon button" data-bind="click: ShowLoader.bind(null, function() { $parent.CreateNewEmployee(); $parent.SelectedView('SelectedEmployee'); HideLoader(); })">
+                    Create new employee
+                    <i class="add circle icon"></i>
+                </button>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: $parent.SelectedEmployee -->
+            <button class="ui fluid right labeled icon button" data-bind="click: $parent.SelectedView.bind(null, 'SelectedEmployee')">
+                Back to the employee
+                <i class="right chevron icon"></i>
+            </button>
+            <!-- /ko -->
+        </div>
+    </div>
+    <!-- ko template: { name: "EmployeesListFilterTemplate" } --><!-- /ko -->
+    <!-- ko template: { name: "EmployeesPaginationControlTemplate", if: PagesCount() > 1 } --><!-- /ko -->
+    <!-- ko template: { name: "EmployeesTableTemplate", data: { list: Results, clickFunction: $parent.SelectEmployeeFromList, selectedBadge: ($parent.SelectedEmployee() || {}).CurrentBadgeNumber } } --><!-- /ko -->
+</div>
+<!-- /ko -->
+@section Templates {
+    @Html.Partial("_FirstTabTemplates")
+    @Html.Partial("_SecondTabTemplates")
+    @Html.Partial("_ThirdTabTemplates")
+    @Html.Partial("_FourthTabTemplates")
+
+    @Html.Partial("_EmployeesListTemplates")
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/views/employees")
+}

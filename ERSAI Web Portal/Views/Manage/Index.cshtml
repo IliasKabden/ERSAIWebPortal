@@ -1,0 +1,32 @@
+﻿@model ERSAI_Web_Portal.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage My Account";
+}
+
+<h2 class="ui dividing header">@ViewBag.Title</h2>
+@if (ViewBag.StatusMessage != null)
+{
+    <div class="ui success message" id="successMessage">
+        <i class="close icon"></i>
+        <div class="header">
+            @ViewBag.StatusMessage
+        </div>
+    </div>
+    <script>
+        $('#successMessage .close')
+            .on('click', function () {
+                $('#successMessage').transition('fade');
+            });
+    </script>
+}
+<div>
+    <h4 class="ui dividing header">Change your account settings</h4>
+    <div class="ui list">
+        <div class="item">
+            <i class="lock icon"></i>
+            <div class="content">
+                @Html.ActionLink("Change your password", "ChangePassword")
+            </div>
+        </div>
+    </div>
+</div>

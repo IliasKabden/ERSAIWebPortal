@@ -1,0 +1,208 @@
+﻿<script type="text/html" id="SecondTabTemplate">
+    <table class="ui very basic table">
+        <tr class="top aligned">
+            <!-- ko if: PassportInfo() || TaxPensionMedInfo() -->
+            <td>
+                <!-- ko with: PassportInfo -->
+                <div class="ui blue segment">
+                    <div class="ui dividing header">
+                        <i class="id card icon"></i>
+                        Passport Information
+                    </div>
+                    <!-- ko template: { name: 'PassportInfoFieldsTemplate', data: $data } --><!-- /ko -->
+                </div>
+                <!-- /ko -->
+                <!-- ko with: TaxPensionMedInfo -->
+                <div class="ui yellow segment">
+                    <div class="ui dividing header">Tax/Pension/Med. Insurance Information</div>
+                    <!-- ko template: { name: 'TaxPensionMedInfoFieldsTemplate', data: $data } --><!-- /ko -->
+                </div>
+                <!-- /ko -->
+            </td>
+            <!-- /ko -->
+            <!-- ko if: WorkPermitInfo() || VisaInfo() -->
+            <td>
+                <!-- ko with: WorkPermitInfo -->
+                <div class="ui green segment">
+                    <div class="ui dividing header">
+                        <i class="check square outline icon"></i>
+                        Work permit Information
+                    </div>
+                    <!-- ko template: { name: 'WorkPermitInfoFieldsTemplate', data: $data } --><!-- /ko -->
+                </div>
+                <!-- /ko -->
+                <!-- ko with: VisaInfo -->
+                <div class="ui orange segment">
+                    <div class="ui dividing header">Visa Information</div>
+                    <!-- ko template: { name: 'VisaInfoFieldsTemplate', data: $data } --><!-- /ko -->
+                </div>
+                <!-- /ko -->
+            </td>
+            <!-- /ko -->
+        </tr>
+    </table>
+</script>
+<script type="text/html" id="PassportInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Number</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Number" />
+        </div>
+        <div class="field">
+            <label>Issued Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: IssuedDate, dpOptions: { manual: true }" />
+        </div>
+        <div class="field">
+            <label>Expiration Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: ExpirationDate, dpOptions: { manual: true }" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Issued by</label>
+            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                Options: dicts.HR.PassportIssuedBy,
+                Value: IssuedBy,
+                Disabled: $data.ReadOnly
+            } } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Status</label>
+            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                Options: dicts.HR.PassportStatuses,
+                Value: Status,
+                Disabled: $data.ReadOnly
+            } } -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+<script type="text/html" id="WorkPermitInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Number</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Number" />
+        </div>
+        <div class="field">
+            <label>Position</label>
+            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                Options: dicts.HR.WorkPermitPositions,
+                Value: Position,
+                Disabled: $data.ReadOnly
+            } } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Location</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.WorkPermitLocations,
+                    Value: LocationID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Issued Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: IssuedDate, dpOptions: { manual: true }" />
+        </div>
+        <div class="field">
+            <label>Expiration Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: ExpirationDate, dpOptions: { manual: true }" />
+        </div>
+        <div class="field">
+            <label>Local Contract Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: LocalStartDate, dpOptions: { manual: true }" />
+        </div>
+    </div>
+    <div class="field">
+        <label>Category</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.WorkPermitCategories,
+                Value: CategoryID,
+                DefaultText: "Not chosen",
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+</script>
+<script type="text/html" id="VisaInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Number</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Number" />
+        </div>
+        <div class="field">
+            <label>Type</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.VisaTypes,
+                    Value: TypeID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Issued Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: IssuedDate, dpOptions: { manual: true }" data-position="top left" />
+        </div>
+        <div class="field">
+            <label>Expiration Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: ExpirationDate, dpOptions: { manual: true }" data-position="top left" />
+        </div>
+        <div class="field">
+            <label>Police Reg. Expiration Date</label>
+            <input type="text" data-bind="disable: $data.ReadOnly, datepicker: PoliceRegExpirationDate, dpOptions: { manual: true }" data-position="top left" />
+        </div>
+    </div>
+</script>
+<script type="text/html" id="TaxPensionMedInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>IIN</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: IIN" />
+        </div>
+        <div class="field">
+            <label>Pension Account Number</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: PensionAccountNumber" />
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <label>Pension Percentage</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: PensionPercentage" />
+        </div>
+        <div class="field">
+            <label>Pension Agency</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.PensionGroups,
+                    Value: PensionGroupID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="field">
+        <label>Medical Expiration Date</label>
+        <input type="text" data-bind="disable: $data.ReadOnly, datepicker: MedInsuranceExpirationDate, dpOptions: { manual: true }" />
+    </div>
+</script>

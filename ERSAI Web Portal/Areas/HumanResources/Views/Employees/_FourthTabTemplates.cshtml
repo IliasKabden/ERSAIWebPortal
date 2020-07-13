@@ -1,0 +1,107 @@
+﻿<script type="text/html" id="FourthTabTemplate">
+    <!-- ko with: EducationInfo -->
+    <div class="ui red segment">
+        <div class="ui dividing header">Education Information</div>
+        <!-- ko template: { name: 'EducationInfoFieldsTemplate', data: $data } --><!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko with: EmergencyContactInfo -->
+    <div class="ui purple segment">
+        <div class="ui dividing header">Emergency Contact Information</div>
+        <!-- ko template: { name: 'EmergencyContactInfoFieldsTemplate', data: $data } --><!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko with: OtherInfo -->
+    <div class="field">
+        <label>Additional Remarks</label>
+        <textarea data-bind="attr: { readonly: $data.ReadOnly }, value: Comments"></textarea>
+    </div>
+    <!-- /ko -->
+</script>
+<script type="text/html" id="EducationInfoFieldsTemplate">
+    <div class="fields">
+        <div class="field">
+            <label>Level</label>
+            <!-- ko template: { name: 'DropdownTemplate', data: {
+                    Options: dicts.HR.EducationLevels,
+                    Value: LevelID,
+                    Search: true,
+                    CSSClasses: 'fluid',
+                    Disabled: $data.ReadOnly,
+                    DefaultText: true
+                }
+            } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Degree/Course</label>
+            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                Options: dicts.HR.EducationDirections,
+                Value: Direction,
+                Disabled: $data.ReadOnly
+            } } -->
+            <!-- /ko -->
+        </div>
+        <div class="field">
+            <label>Major</label>
+            <!-- ko template: { name: "AutocompleteInputTemplate", data: {
+                Options: dicts.HR.EducationMajors,
+                Value: Major,
+                Disabled: $data.ReadOnly
+            } } -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <div class="fields">
+                <div class="field">
+                    <label>Graduated</label>
+                    <div class="ui fitted checkbox">
+                        <input type="checkbox" data-bind="checked: Graduated, attr: { disabled: $data.ReadOnly }" />
+                        <label></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Year Graduated</label>
+                    <input type="number" data-bind="GraduationYear, attr: { readonly: $data.ReadOnly }" />
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>School/University Name</label>
+            <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: SchoolOrUniversityName" />
+        </div>
+    </div>
+    <div class="field">
+        <label>School/University Address</label>
+        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: SchoolOrUniversityAddress" />
+    </div>
+</script>
+<script type="text/html" id="EmergencyContactInfoFieldsTemplate">
+    <div class="field">
+        <label>Name</label>
+        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Name" />
+    </div>
+    <div class="field">
+        <label>Address</label>
+        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: Address" />
+    </div>
+    <div class="field">
+        <label>Phone Number</label>
+        <input type="text" data-bind="attr: { readonly: $data.ReadOnly }, value: PhoneNumber" />
+    </div>
+    <div class="field">
+        <label>Relationship Type</label>
+        <!-- ko template: { name: 'DropdownTemplate', data: {
+                Options: dicts.HR.RelationshipTypes,
+                Value: RelationshipTypeID,
+                Search: true,
+                CSSClasses: 'fluid',
+                Disabled: $data.ReadOnly,
+                DefaultText: true
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+</script>

@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "Scripts/app/Views/Payslips.viewmodel.es5.js",
+    "inputFile": "Scripts/app/Views/Payslips.viewmodel.js"
+  },
+  {
+    "outputFile": "Scripts/app/Views/KPIDocs.viewmodel.es5.js",
+    "inputFile": "Scripts/app/Views/KPIDocs.viewmodel.js"
+  },
+  {
+    "outputFile": "Scripts/app/PaginatedResults.es5.js",
+    "inputFile": "Scripts/app/PaginatedResults.js"
+  },
+  {
+    "outputFile": "Scripts/app/BasicClass.item.es5.js",
+    "inputFile": "Scripts/app/BasicClass.item.js"
+  }
+]

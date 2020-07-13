@@ -1,0 +1,85 @@
+﻿@{
+    var AppName = "ERSAI Web Portal";
+    var HomeURL = "http://ersaiconnect/SitePages/Home.aspx";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@AppName</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    <style>
+        .shadowed {
+            -webkit-filter: drop-shadow(2px 2px 3px #222);
+            filter: drop-shadow(2px 2px 3px #222);
+        }
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    @if (ViewBag.Dicts != null)
+    {
+        @Html.Partial("_DictsPartial")
+    }
+    @Html.Partial("_AddInfoPartial")
+
+    @Html.Partial("SearchTemplates")
+    @Html.Partial("DropdownTemplates")
+    @Html.Partial("_BasicClassTemplates")
+    @RenderSection("Templates", required: false)
+
+    @Scripts.Render("~/bundles/polyfills")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Semantic-UI")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/app")
+    @Html.Partial("_ModalsPartial")
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    @if (ViewBag.HideHeaderMenu != true)
+    {
+        <div class="ui inverted attached stackable main menu" style="margin-bottom: 1em; background: #0072c6">
+            <a class="title item shadowed" style="padding: 0" href="@HomeURL">
+                <div class="ui image" style="width: 8em; margin: 0.7em 0.7em">
+                    <img src="~/Content/Logo.png" />
+                </div>
+            </a>
+            <a class="header item shadowed" style="font-family: Montserrat, sans-serif; font-size: 1.4em;" href="@HomeURL">
+                ERSAI/SAKAZ Collaboration
+            </a>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.Partial("_MainMenuItemsPartial")
+            }
+            @if (ViewBag.HideLoginPartial != true)
+            {
+                <div class="right menu">
+                    @if (User.IsInRole(DataModels.AppRole.PersonalAccountRole))
+                    {
+                        <a class="item" href="/@(ERSAI_Web_Portal.Areas.AreaNames.PersonalAccount)">
+                            <i class="user icon"></i>Personal Account
+                        </a>
+                    }
+                    @Html.Partial("_LoginPartial")
+                </div>
+            }
+        </div>
+    }
+    <div class="ui page dimmer" id="loader" style="opacity: 0.7">
+        <div class="content">
+            <div class="ui text loader">Loading</div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        @RenderSection("SPAViews", required: false)
+        @*<footer>
+                <p>&copy; @DateTime.Now.Year - @AppName</p>
+            </footer>*@
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿@{
+    var dicts = (Dictionary<string, string>)ViewBag.Dicts;
+}
+<script>
+    dicts = {};
+    @foreach(var dict in dicts)
+    {
+        @Html.Raw($"dicts.{dict.Key} = {dict.Value};");
+    }
+    if (dicts.HR != null) {
+        dicts.HR.ActiveEmployees = dicts.HR.Employees.filter(function (emp) {
+            return emp.IsNotActive != true
+        });
+    }
+</script>

@@ -1,0 +1,18 @@
+﻿<script type="text/html" id="BasicClassTableItemTemplate">
+    <tr class="top aligned" data-bind="foreach: Properties.filter(function(p) { return p.InTable; })">
+        <td data-bind="html: $parent[Name]"></td>
+    </tr>
+</script>
+<script type="text/html" id="BasicClassTableTemplate">
+    <table data-bind="css: $data.TableClasses || 'ui table'">
+        <tbody data-bind="template: { name: 'BasicClassTableItemTemplate', foreach: Items }"></tbody>
+    </table>
+</script>
+<script type="text/html" id="BasicClassPaginatedResultsTemplate">
+    <div class="ui pagination menu" data-bind="foreach: Array(Number(PagesCount() || 0))" style="overflow-x: auto; max-width: 100%">
+        <!-- ko with: $index() + 1 -->
+        <a class="item" data-bind="click: function() { $parents[1].Filter.PageNumber($data); $parents[1].Load(); }, text: $data, css: { active: $parents[1].CurrentPage() == $data }"></a>
+        <!-- /ko -->
+    </div>
+    <!-- ko template: { name: "BasicClassTableTemplate", data: { TableClasses: "ui compact celled table", Items: Results } } -->
+</script>

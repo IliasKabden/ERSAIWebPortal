@@ -1,0 +1,138 @@
+﻿<script type="text/html" id="UsersListFilterTemplate">
+    <div class="ui green segment">
+        <div class="ui dividing header">
+            Filter
+        </div>
+        <div class="ui equal width form" data-bind="with: Filter">
+            <div class="fields">
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" data-bind="value: UsernameLike" />
+                </div>
+                <div class="field">
+                    <label>Has Role</label>
+                    <!-- ko template: { name: 'DropdownTemplate', data: {
+                            Options: dicts.UM.Roles,
+                            Value: RoleID,
+                            DefaultText: true,
+                            Search: true,
+                            CSSClasses: 'fluid'
+                        }
+                    } -->
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui green fluid button" data-bind="click: $parent.Load">Search</div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="UsersPaginationControlTemplate">
+    <div class="ui pagination menu" data-bind="foreach: Array(Number(PagesCount()))" style="overflow-x: auto; max-width: 100%">
+        <!-- ko with: $index() + 1 -->
+        <a class="item" data-bind="click: function() { $parents[1].Filter.PageNumber($data); $parents[1].Load(); }, text: $data, css: { active: $parents[1].CurrentPage() == $data }"></a>
+        <!-- /ko -->
+    </div>
+</script>
+<script type="text/html" id="UsersTableTemplate">
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Roles</th>
+                <th>Employee view right sections</th>
+                <th>Employee edit right sections</th>
+                <th>Employee view right business units</th>
+                <th>Employee edit right business units</th>
+
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: list">
+            <tr>
+                <td>
+                    <a data-bind="text: UserName, click: $parent.clickFunction" href></a>
+                </td>
+                <td data-bind="with: RoleIDs">
+                    <ul data-bind="foreach: $data.map(function(ID) { return dicts.UM.Roles.find(function(r) { return r.ID == ID }) })">
+                        <li data-bind="text: Name"></li>
+                    </ul>
+                </td>
+                <!-- ko with: AddData -->
+                <td data-bind="html: ViewSectionsNames"></td>
+                <td data-bind="html: EditSectionsNames"></td>
+                <td data-bind="html: ViewBusinessUnitsNames"></td>
+                <td data-bind="html: EditBusinessUnitsNames"></td>
+                <!-- /ko -->
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script type="text/html" id="UserFieldsTemplate">
+    <div class="field">
+        <label>UserName</label>
+        <input type="text" data-bind="value: UserName" />
+    </div>
+    <div class="field">
+        <label>New Password</label>
+        <input type="text" data-bind="value: NewPassword" />
+    </div>
+    <div class="field">
+        <label>Roles</label>
+        <div data-bind="foreach: dicts.UM.Roles">
+            <div class="ui checkbox">
+                <input type="checkbox" data-bind="checkedValue: ID, checked: $parent.RoleIDs" />
+                <label data-bind="text: Name"></label>
+            </div>
+        </div>
+    </div>
+    <!-- ko with: AddData -->
+    <div class="field">
+        <label>Sections(Edit)</label>
+        <!-- ko template: { name: 'MultipleSelectionDropdownTemplate', data: {
+                Options: dicts.UM.EmployeeClassSections,
+                Values: IMSEmployeeSectionEditRights,
+                Search: true,
+                CSSClasses: 'fluid',
+                ValueType: Number
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Sections(View)</label>
+        <!-- ko template: { name: 'MultipleSelectionDropdownTemplate', data: {
+                Options: dicts.UM.EmployeeClassSections,
+                Values: IMSEmployeeSectionViewRights,
+                Search: true,
+                CSSClasses: 'fluid',
+                ValueType: Number
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Business Units(Edit)</label>
+        <!-- ko template: { name: 'MultipleSelectionDropdownTemplate', data: {
+                Options: dicts.UM.BusinessUnits,
+                Values: IMSEmployeesBusinessUnitsEditRights,
+                Search: true,
+                CSSClasses: 'fluid'
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <div class="field">
+        <label>Business Units(View)</label>
+        <!-- ko template: { name: 'MultipleSelectionDropdownTemplate', data: {
+                Options: dicts.UM.BusinessUnits,
+                Values: IMSEmployeesBusinessUnitsViewRights,
+                Search: true,
+                CSSClasses: 'fluid'
+            }
+        } -->
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</script>

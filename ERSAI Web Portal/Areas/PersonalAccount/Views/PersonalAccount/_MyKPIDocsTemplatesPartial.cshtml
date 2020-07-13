@@ -1,0 +1,40 @@
+﻿<script type="text/html" id="MyKPIDocsListTemplate">
+    <!-- ko if: $data.length > 0 -->
+    <div class="ui list" data-bind="foreach: $data">
+        <a class="item" target="_blank" data-bind="text: Name, attr: { href: Path }"></a>
+    </div>
+    <!-- /ko -->
+    <!-- ko ifnot: $data.length > 0 -->
+    <div class="ui warning message">
+        <div class="header">
+            You have no KPI documents
+        </div>
+    </div>
+    <!-- /ko -->
+</script>
+<script type="text/html" id="MySubordinatesKPIDocsListTemplate">
+    <!-- ko if: $data.length > 0 -->
+    <table class="ui compact celled table">
+        <tbody data-bind="foreach: $data">
+            <tr>
+                <td>
+                    <span data-bind="text: BadgeNumber"></span>
+                </td>
+                <td>
+                    <span data-bind="text: FullName"></span>
+                </td>
+                <td>
+                    <a class="item" target="_blank" data-bind="text: Name, attr: { href: Path }"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /ko -->
+    <!-- ko ifnot: $data.length > 0 -->
+    <div class="ui warning message">
+        <div class="header">
+            No documents found
+        </div>
+    </div>
+    <!-- /ko -->
+</script>

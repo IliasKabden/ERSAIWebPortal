@@ -1,0 +1,149 @@
+﻿<script type="text/html" id="EmployeesListFilterTemplate">
+    <div class="ui green segment">
+        <div class="ui dividing header">
+            Filter
+        </div>
+        <div class="ui equal width form" data-bind="with: Filter">
+            <div class="fields">
+                <div class="field">
+                    <label>Order by</label>
+                    <!-- ko template: { name: 'DropdownTemplate', data: {
+                            Options: OrderByValues,
+                            Value: OrderBy,
+                            CSSClasses: 'fluid'
+                        }
+                    } -->
+                    <!-- /ko -->
+                </div>
+                <div class="field">
+                    <label>Badge</label>
+                    <input type="text" data-bind="value: BadgeLike" />
+                </div>
+                <div class="field">
+                    <label>Business unit</label>
+                    <!-- ko template: { name: 'DropdownTemplate', data: {
+                            Options: BusinessUnits,
+                            Value: BusinessUnitID,
+                            DefaultText: (BusinessUnits || []).length > 1,
+                            Search: true,
+                            CSSClasses: 'fluid'
+                        }
+                    } -->
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <label>Gender</label>
+                    <!-- ko template: { name: 'DropdownTemplate', data: {
+                            Options: dicts.HR.Genders,
+                            Value: Gender,
+                            DefaultText: true,
+                            CSSClasses: 'fluid'
+                        }
+                    } -->
+                    <!-- /ko -->
+                </div>
+                <div class="field">
+                    <label>Name(first middle last)</label>
+                    <input type="text" data-bind="value: FullNameLike" />
+                </div>
+                <div class="field">
+                    <label>Department</label>
+                    <!-- ko template: { name: 'DropdownTemplate', data: {
+                            Options: dicts.HR.Departments,
+                            Value: DepartmentID,
+                            DefaultText: true,
+                            Search: true,
+                            CSSClasses: 'fluid'
+                        }
+                    } -->
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <label>Contract Position (exact)</label>
+                    <!-- ko template: { name: "SearchSelectTemplate", data: {
+                        Options: dicts.HR.Positions,
+                        Value: ContractPositionID
+                    } } -->
+                    <!-- /ko -->
+                </div>
+                <div class="field">
+                    <label>Contract Position name</label>
+                    <input type="text" data-bind="value: ContractPositionNameLike" />
+                </div>
+                <div class="field">
+                    <label>Status</label>
+                    <!-- ko template: { name: 'DropdownTemplate', data: {
+                            Options: dicts.HR.EmployeeStatuses,
+                            Value: StatusID,
+                            DefaultText: true,
+                            CSSClasses: 'fluid'
+                        }
+                    } -->
+                    <!-- /ko -->
+                </div>
+                <div class="field">
+                    <label>Category</label>
+                    <!-- ko template: { name: 'DropdownTemplate', data: {
+                            Options: dicts.HR.EmployeeCategories,
+                            Value: Category,
+                            DefaultText: true,
+                            CSSClasses: 'fluid'
+                        }
+                    } -->
+                    <!-- /ko -->
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui green fluid button" data-bind="click: $parent.Load">Search</div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="EmployeesPaginationControlTemplate">
+    <div class="ui pagination menu" data-bind="foreach: Array(Number(PagesCount()))" style="overflow-x: auto; max-width: 100%">
+        <!-- ko with: $index() + 1 -->
+        <a class="item" data-bind="click: function() { $parents[1].Filter.PageNumber($data); $parents[1].Load(); }, text: $data, css: { active: $parents[1].CurrentPage() == $data }"></a>
+        <!-- /ko -->
+    </div>
+</script>
+<script type="text/html" id="EmployeesTableTemplate">
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th class="collapsing">Badge</th>
+                <th class="collapsing">GHRSID</th>
+                <th class="two wide">Full Name</th>
+                <th class="one wide">Status</th>
+                <th>Contract Position</th>
+                <th class="two wide">Business Unit</th>
+                <th class="three wide">Department</th>
+                <th class="three wide">Supervisor</th>
+                <th class="collapsing">Photo</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: list">
+            <tr data-bind="css: { active: ko.unwrap($parent.selectedBadge) == BasicInfo.BadgeNumber }">
+                <td>
+                    <a data-bind="click: $parent.clickFunction.bind(null, BasicInfo), text: BasicInfo.BadgeNumber" href></a>
+                </td>
+                <td data-bind="text: BasicInfo.GHRSID"></td>
+                <td data-bind="text: BasicInfo.FullName"></td>
+                <td data-bind="text: (dicts.HR.EmployeeStatuses.find(function(x) { return x.ID == StatusInfo.StatusID }) || {}).Name"></td>
+                <!-- ko with: BasicCompanyInfo -->
+                <td data-bind="text: (dicts.HR.Positions.find(function(pos) { return pos.ID == $data.ContractPositionID }) || {}).Name"></td>
+                <td data-bind="text: (dicts.HR.BusinessUnits.find(function(bu) { return bu.ID == $data.BusinessUnitID }) || {}).Name"></td>
+                <td data-bind="text: (dicts.HR.Departments.find(function(dep) { return dep.ID == $data.DepartmentID }) || {}).Name"></td>
+                <td data-bind="text: (dicts.HR.Employees.find(function(emp) { return emp.ID == $data.SupervisorID }) || {}).Name"></td>
+                <!-- /ko -->
+                <td>
+                    <img data-bind="attr: { src: '/@ERSAI_Web_Portal.Areas.AreaNames.HumanResources/Employees/Photo/' + BasicInfo.BadgeNumber + '?' + new Date().valueOf() }" class="ui tiny image" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>

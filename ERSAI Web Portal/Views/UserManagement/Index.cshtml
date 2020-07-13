@@ -1,0 +1,40 @@
+﻿<!-- ko with: UserManagement -->
+<!-- ko with: SelectedView() == "List" ? UsersList : null -->
+<div class="ui orange fluid labeled icon button" data-bind="click: $parent.CreateNewUser">
+    <i class="add icon"></i>
+    Create new User
+</div>
+<!-- ko template: { name: "UsersListFilterTemplate" } --><!-- /ko -->
+<!-- ko template: { name: "UsersPaginationControlTemplate", if: PagesCount() > 1 } --><!-- /ko -->
+<!-- ko template: { name: "UsersTableTemplate", data: { list: Results, clickFunction: $parent.SelectUserFromList } } --><!-- /ko -->
+<!-- /ko -->
+<!-- ko with: SelectedView() == "SelectedUser" ? SelectedUser : null -->
+<div class="ui equal width form">
+    <button class="ui fluid labeled icon button" data-bind="click: $parent.SelectedView.bind(null, 'List')">
+        <i class="left chevron icon"></i>
+        Back to the list
+    </button>
+    <div class="ui green segment" data-bind="template: { name: 'UserFieldsTemplate', data: $data }"></div>
+    <div class="field">
+        <button class="ui blue fluid labeled icon button" data-bind="click: $parent.SaveSelectedUser">
+            <i class="save icon"></i>
+            Save User
+        </button>
+    </div>
+    <!-- ko if: ID -->
+    <div class="field">
+        <button class="ui red fluid labeled icon button" data-bind="click: $parent.DeleteSelectedUser">
+            <i class="delete icon"></i>
+            Delete User
+        </button>
+    </div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+<!-- /ko -->
+@section Scripts{
+    @Scripts.Render("~/bundles/views/UserManagement")
+}
+@section Templates{
+    @Html.Partial("_Templates")
+}

@@ -1,0 +1,19 @@
+﻿<!-- ko if: Months().length > 0 -->
+<label style="display: block">Choose payslip language</label>
+<!-- ko template: { name: 'DropdownTemplate', data: {
+        Options: Languages,
+        Value: SelectedLanguageID
+    }
+} -->
+<!-- /ko -->
+<div class="ui list" data-bind="foreach: Months">
+    <a class="item" target="_blank" data-bind="text: DisplayText, attr: { href: PrintURL }"></a>
+</div>
+<!-- /ko -->
+<!-- ko ifnot: Months().length > 0 -->
+<div class="ui warning message">
+    <div class="header">
+        You have no payslips yet
+    </div>
+</div>
+<!-- /ko -->
